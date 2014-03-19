@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "ACEDrawingView.h"
+#import "PPSSignatureView.h"
 @interface DrawingView : UIImageView
 @property (strong , nonatomic) UIImageView *templateView;
-@property (strong , nonatomic) ACEDrawingView *signView;
+@property (strong , nonatomic) PPSSignatureView *signView;
 @property (strong , nonatomic) UIView *renderView;
 @property (strong , nonatomic) UIImageView *imgView;
+
+@property (strong, nonatomic) UIImageView *imgView2;
 
 - (void)closeCamera;
 - (void)takePicture;

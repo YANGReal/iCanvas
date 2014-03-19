@@ -23,9 +23,10 @@
     IBOutlet UIButton *button1;
     IBOutlet UIButton *button2;
     IBOutlet UIButton *button3;
-    UIColor *penColor;
+    NSString *penColor;
     
     NSArray *colorArray;
+    NSArray *colorStrArr;
     
 }
 
@@ -53,7 +54,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        penColor = BLACK_COLOR;
+        penColor = @"0,0,0";
         
         colorArray = @[[UIColor blackColor],[UIColor whiteColor],
                        [UIColor grayColor],[UIColor redColor],
@@ -61,6 +62,10 @@
                        [UIColor cyanColor],[UIColor yellowColor],
                        [UIColor magentaColor],[UIColor orangeColor],
                        [UIColor purpleColor],[UIColor brownColor]];
+        
+        colorStrArr = @[@"0,0,0",@"255,255,255",@"128,128,128",@"255,0,0",@"0,255,0",@"0,0,255",@"0,255,255",@"255,255,0",@"255,0,255",@"255,128,0",@"128,0,128",@"153,102,51"];
+        
+        
         
     }
     return self;
@@ -71,6 +76,7 @@
     [super viewDidLoad];
     NSString *width = [AppTool getObjectForKey:@"width"];
     slider.value = width.floatValue;
+    DLog(@"value = %f",slider.value);
     if (width.length == 0)
     {
         slider.value = 5.0;
@@ -80,15 +86,19 @@
     if (colorIndex.length == 0)
     {
         [_picker selectRow:0 inComponent:0 animated:YES];
-        penColor = BLACK_COLOR;
+        penColor = @"0,0,0";
         selectedColorView.backgroundColor = BLACK_COLOR;
     }
     else
     {
         NSInteger index = colorIndex.integerValue;
         [_picker selectRow:index inComponent:0 animated:YES];
-        penColor = colorArray[index];
-        selectedColorView.backgroundColor = penColor;
+        penColor = colorStrArr[index];
+        NSArray *arr = [penColor componentsSeparatedByString:@","];
+        int red = [arr[0] intValue];
+        int green = [arr[1] intValue];
+        int blue = [arr[2] intValue];
+        selectedColorView.backgroundColor = RGBColor(red, green, blue, 1);
     }
     
     NSString *server = [AppTool getObjectForKey:SERVER];
@@ -308,8 +318,12 @@
     
     NSString *str = [NSString stringWithFormat:@"%d",row];
     [AppTool storeObject:str forKey:@"color"];
-    penColor = colorArray[row];
-    selectedColorView.backgroundColor = penColor;
+    penColor = colorStrArr[row];
+    NSArray *arr = [penColor componentsSeparatedByString:@","];
+    int red =   [arr[0] intValue];
+    int green = [arr[1] intValue];
+    int blue =  [arr[2] intValue];
+    selectedColorView.backgroundColor = RGBColor(red, green, blue, 1);
 }
 
 - (BOOL)checkInput

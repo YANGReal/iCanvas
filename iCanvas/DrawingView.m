@@ -9,7 +9,7 @@
 #import "DrawingView.h"
 #import "CameraImageHelper.h"
 
-@interface DrawingView ()<ACEDrawingViewDelegate>
+@interface DrawingView ()<PPSSignatureViewDelageter>
 @property (strong , nonatomic) NSMutableArray *pointArray;
 @property (strong , nonatomic) CameraImageHelper *camera;
 @end
@@ -24,12 +24,7 @@
         self.pointArray = [NSMutableArray array];
         self.contentMode = UIViewContentModeScaleAspectFit;
        // self.image = [UIImage createImageWithColor:CLEAR_COLOR];
-        NSArray *colorArray = @[[UIColor blackColor],[UIColor whiteColor],
-                       [UIColor grayColor],[UIColor redColor],
-                       [UIColor greenColor],[UIColor blueColor],
-                       [UIColor cyanColor],[UIColor yellowColor],
-                       [UIColor magentaColor],[UIColor orangeColor],
-                       [UIColor purpleColor],[UIColor brownColor]];
+        NSArray *colorArray = @[@"0,0,0",@"255,255,255",@"128,128,128",@"255,0,0",@"0,255,0",@"0,0,255",@"0,255,255",@"255,255,0",@"255,0,255",@"255,128,0",@"128,0,128",@"153,102,51"];
         
         self.renderView = [[UIView alloc] initWithFrame:self.bounds];
         [self addSubview:self.renderView];
@@ -58,30 +53,40 @@
         
         [self addSubview:self.templateView];
         
-        self.signView = [[ACEDrawingView alloc] initWithFrame:self.bounds];
-        self.signView.lineAlpha = 1.0;
-        self.signView.delegate = self;
+        self.signView = [[PPSSignatureView alloc] initWithFrame:self.bounds];
+        self.signView.delegater = self;
+        self.signView.backgroundColor = CLEAR_COLOR;
         NSString *widStr = [AppTool getObjectForKey:@"width"];
         if (widStr.length == 0)
         {
-             self.signView.lineWidth = 5.0;
+             self.signView.fontWidth = 1;
         }
         else
         {
-            self.signView.lineWidth = widStr.floatValue;
+            self.signView.fontWidth = widStr.floatValue;
         }
         
         NSString *colorIndex = [AppTool getObjectForKey:@"color"];
         if (colorIndex.length == 0)
         {
-             self.signView.lineColor = BLACK_COLOR;
+            self.signView.color = GLKColor(0, 0, 0);
         }
         else
         {
             NSInteger index = colorIndex.integerValue;
-            self.signView.lineColor = colorArray[index];
+            NSString *colorStr = colorArray[index];
+            NSArray *arr = [colorStr componentsSeparatedByString:@","];
+            int red = [arr[0] intValue];
+            int green = [arr[1] intValue];
+            int blue = [arr[2] intValue];
+            self.signView.color = GLKColor(red, green, blue);
         }
         [self addSubview:self.signView];
+        
+        self.imgView2 = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.imgView2.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:self.imgView2];
+        
     }
     return self;
 }
@@ -166,7 +171,8 @@
 - (void)clear
 {
     self.imgView.image = [UIImage createImageWithColor:CLEAR_COLOR];
-    [self.signView clear];
+    [self.signView erase];
+    self.imgView2.image = [UIImage createImageWithColor:CLEAR_COLOR];
     [self.pointArray removeAllObjects];
 }
 
@@ -176,20 +182,23 @@
     [self.camera changePreviewOrientation:orientation];
 }
 
--(void)drawingView:(ACEDrawingView *)view drawingBeganWiithPoint:(CGPoint)point
+- (void)signView:(PPSSignatureView *)view signBeganWiithPoint:(CGPoint)point
 {
    
     [self.pointArray addObject:[NSValue valueWithCGPoint:point]];
+    
 }
 
-- (void)drawingView:(ACEDrawingView *)view drawingMovedWithPoint:(CGPoint)point
+- (void)signView:(PPSSignatureView *)view signMovedWithPoint:(CGPoint)point
 {
      [self.pointArray addObject:[NSValue valueWithCGPoint:point]];
 }
 
-- (void)drawingView:(ACEDrawingView *)view drawingEndedWithPoint:(CGPoint)point
+- (void)signView:(PPSSignatureView *)view signEndedWithPoint:(CGPoint)point
 {
-     [self.pointArray addObject:[NSValue valueWithCGPoint:point]];
+    [self.pointArray addObject:[NSValue valueWithCGPoint:point]];
+    self.imgView2.image = self.signView.signatureImage;
+    
 }
 
 - (void)setFrame:(CGRect)frame
@@ -198,6 +207,7 @@
     
     self.templateView.frame = self.bounds;
     self.signView.frame = self.bounds;
+    self.imgView2.frame = self.bounds;
 }
 
 

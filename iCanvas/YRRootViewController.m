@@ -203,28 +203,31 @@
 #pragma mark - 合成图片
 
 
-- (UIImage *)imageFromView: (UIView *)theView  atFrame:(CGRect)r
+- (UIImage *)imageFromView: (UIView *)theView  atFrame:(CGRect)rect
 {
     UIGraphicsBeginImageContext(theView.frame.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
-    UIRectClip(r);
+    UIRectClip(rect);
     [theView.layer renderInContext:context];
     UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return  theImage;//[self getImageAreaFromImage:theImage atFrame:r];
+    return  theImage;
 }
 
 
 #pragma mark - SettingViewController delegate method
 
-- (void)setLineWidth:(CGFloat)witth andColor:(UIColor *)color
+- (void)setLineWidth:(CGFloat)witth andColor:(NSString *)color
 {
-    DLog(@"color = %@",color);
-    drawingView.signView.lineWidth = witth;
-    drawingView.signView.lineColor = color;
-    drawingView.signView.lineAlpha = 1.0;
+    drawingView.signView.fontWidth = (int)witth;
+    NSArray *arr = [color componentsSeparatedByString:@","];
+    int red =   [arr[0] intValue];
+    int green = [arr[1] intValue];
+    int blue =  [arr[2] intValue];
+    drawingView.signView.color = GLKColor(red, green, blue);
+   
 }
 
 
@@ -319,14 +322,13 @@
     [self showMBLoadingWithMessage:@"上传中..."];
     UIImage *photo = drawingView.imgView.image;
     CGRect rect = [drawingView getSignRect];
-    UIImage *sign = [drawingView.signView.image getSubImage:rect];
+    UIImage *sign = [drawingView.signView.signatureImage getSubImage:rect];
     DLog(@"sign = %@",sign);
   
     if (sign == nil)
     {
         sign = [UIImage createImageWithColor:CLEAR_COLOR];
     }
-    DLog(@"sign = %@",sign);
     UIImage *picture = [self imageFromView:drawingView atFrame:drawingView.bounds];
     
     NSData *photoData = UIImagePNGRepresentation(photo);
@@ -439,7 +441,7 @@
 
 - (void)saveToAlbum
 {
-    UIImage *img = drawingView.signView.image;//[self imageFromView:drawingView atFrame:drawingView.bounds];
+    UIImage *img = drawingView.signView.signatureImage;//[self imageFromView:drawingView atFrame:drawingView.bounds];
     NSData *data = UIImagePNGRepresentation(img);
     [data writeToFile:DOCUMENTS_PATH(@"123.png") atomically:YES];
     //UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);

@@ -11,7 +11,7 @@
 @protocol SettingViewControllerDelegate <NSObject>
 
 @optional
-- (void)setLineWidth:(CGFloat)witth andColor:(UIColor *)color;
+- (void)setLineWidth:(CGFloat)witth andColor:(NSString *)color;
 
 @end
 

@@ -12,6 +12,9 @@
 		1471C47717C09BEE003C4B26 /* SBPageFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1471C47617C09BEE003C4B26 /* SBPageFlowView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1471C47A17C0A751003C4B26 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1471C47917C0A751003C4B26 /* SwipeView.m */; };
 		1471C47D17C0AFCE003C4B26 /* UIImageView+Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 1471C47C17C0AFCE003C4B26 /* UIImageView+Async.m */; };
+		14A0B6A618D93C6A00FD71EA /* PPSSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0B6A518D93C6A00FD71EA /* PPSSignatureView.m */; };
+		14A0B6A818D93D4200FD71EA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A0B6A718D93D4200FD71EA /* GLKit.framework */; };
+		14A0B6AA18D93D7300FD71EA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A0B6A918D93D7300FD71EA /* OpenGLES.framework */; };
 		14AC653E17B2921000C16B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AC653D17B2921000C16B30 /* UIKit.framework */; };
 		14AC654017B2921000C16B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AC653F17B2921000C16B30 /* Foundation.framework */; };
 		14AC654217B2921000C16B30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AC654117B2921000C16B30 /* CoreGraphics.framework */; };
@@ -98,6 +101,10 @@
 		1471C47917C0A751003C4B26 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
 		1471C47B17C0AFCE003C4B26 /* UIImageView+Async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Async.h"; path = "iCanvas/UIImageView+Async.h"; sourceTree = "<group>"; };
 		1471C47C17C0AFCE003C4B26 /* UIImageView+Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Async.m"; path = "iCanvas/UIImageView+Async.m"; sourceTree = "<group>"; };
+		14A0B6A418D93C6A00FD71EA /* PPSSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSignatureView.h; sourceTree = "<group>"; };
+		14A0B6A518D93C6A00FD71EA /* PPSSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSignatureView.m; sourceTree = "<group>"; };
+		14A0B6A718D93D4200FD71EA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		14A0B6A918D93D7300FD71EA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		14AC653A17B2921000C16B30 /* iCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AC653D17B2921000C16B30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		14AC653F17B2921000C16B30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -216,6 +223,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14A0B6AA18D93D7300FD71EA /* OpenGLES.framework in Frameworks */,
+				14A0B6A818D93D4200FD71EA /* GLKit.framework in Frameworks */,
 				6E75343F183E2C6B00DD46F5 /* AVFoundation.framework in Frameworks */,
 				6E75343D183E2C5C00DD46F5 /* CoreVideo.framework in Frameworks */,
 				6E75343B183E2C4B00DD46F5 /* CoreMedia.framework in Frameworks */,
@@ -284,6 +293,8 @@
 		14AC653C17B2921000C16B30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14A0B6A918D93D7300FD71EA /* OpenGLES.framework */,
+				14A0B6A718D93D4200FD71EA /* GLKit.framework */,
 				6E75343E183E2C6B00DD46F5 /* AVFoundation.framework */,
 				6E75343C183E2C5C00DD46F5 /* CoreVideo.framework */,
 				6E75343A183E2C4B00DD46F5 /* CoreMedia.framework */,
@@ -306,7 +317,6 @@
 				14AC654C17B2921000C16B30 /* AppDelegate.h */,
 				14AC654D17B2921000C16B30 /* AppDelegate.m */,
 				6E5D50DD18322B8A0060D5D1 /* YRNaviController.h */,
-				6E5D50DE18322B8A0060D5D1 /* YRNaviController.m */,
 				14EB712417BF46C20030ADBD /* YRRootViewController */,
 				6EE645D5182FA4B600444664 /* SettingViewController */,
 				6EE64635182FB99100444664 /* PhotoViewController */,
@@ -448,6 +458,9 @@
 		14EB712417BF46C20030ADBD /* YRRootViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6E5D50DE18322B8A0060D5D1 /* YRNaviController.m */,
+				14A0B6A418D93C6A00FD71EA /* PPSSignatureView.h */,
+				14A0B6A518D93C6A00FD71EA /* PPSSignatureView.m */,
 				14EB711F17BF46BB0030ADBD /* YRRootViewController.h */,
 				14EB712017BF46BC0030ADBD /* YRRootViewController.m */,
 				6EE64636182FC56900444664 /* DrawingView.h */,
@@ -663,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EA050EE1831F88700DDA9AF /* GRCreateDirectoryRequest.m in Sources */,
+				14A0B6A618D93C6A00FD71EA /* PPSSignatureView.m in Sources */,
 				6EA050EF1831F88700DDA9AF /* GRDeleteRequest.m in Sources */,
 				6EA050ED1831F88700DDA9AF /* GRStreamInfo.m in Sources */,
 				6EA050F11831F88700DDA9AF /* GRListingRequest.m in Sources */,
@@ -783,10 +797,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iCanvas/iCanvas-Prefix.pch";
 				INFOPLIST_FILE = "iCanvas/iCanvas-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6A7A33A7-C537-4DA9-BE3D-50660E86578C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A7A33A7-C537-4DA9-BE3D-50660E86578C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -800,10 +815,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iCanvas/iCanvas-Prefix.pch";
 				INFOPLIST_FILE = "iCanvas/iCanvas-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1E3FF795-4A34-4592-9CA3-1A9D4A5F4FB2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E3FF795-4A34-4592-9CA3-1A9D4A5F4FB2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

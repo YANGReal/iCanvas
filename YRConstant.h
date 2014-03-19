@@ -15,6 +15,8 @@
  定义常用尺寸
  ******************************/
 
+#define GLKColor(r,g,b) GLKVector3Make(r/255.0, g/255.0, b/255.0)
+
 #define BAR_HEIGHT 44
 #define APP_WIDTH [[UIScreen mainScreen] applicationFrame].size.width
 #define APP_HEIGHT [[UIScreen mainScreen] applicationFrame].size.height
@@ -74,6 +76,7 @@
 #import "FTPHelper.h"
 #import "AppTool.h"
 #import "GRRequestsManager.h"
+
 /******************************
 导入视图控制器头文件
 ******************************/
