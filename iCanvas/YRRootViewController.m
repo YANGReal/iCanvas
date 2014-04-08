@@ -132,7 +132,7 @@
         [AppTool storeObject:@"YES" forKey:@"noPrompt"];
         [self hideButtons];
     }
-    DLog(@"index = %d",buttonIndex);
+   // DLog(@"index = %d",buttonIndex);
 }
 
 - (void)hideButtons
@@ -331,9 +331,9 @@
     }
     UIImage *picture = [self imageFromView:drawingView atFrame:drawingView.bounds];
     
-    NSData *photoData = UIImagePNGRepresentation(photo);
-    NSData *signData = UIImagePNGRepresentation(sign);
-    NSData *pictureData = UIImagePNGRepresentation(picture);
+    NSData *photoData = UIImageJPEGRepresentation(photo, 0.3);
+    NSData *signData = UIImageJPEGRepresentation(sign,0.5);
+    NSData *pictureData = UIImageJPEGRepresentation(picture, 0.5);
     
     [photoData writeToFile:CACH_DOCUMENTS_PATH(photoPath) atomically:YES];
     [signData writeToFile:CACH_DOCUMENTS_PATH(signPath) atomically:YES];
@@ -402,7 +402,7 @@
         [self hideMBLoading];
         [self showMBFailedWithMessage:@"超时,请稍后再试"];
     }
-    DLog(@"time = %d",time);
+   // DLog(@"time = %d",time);
 }
 
 
@@ -483,7 +483,7 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd-hh-mm-ss.SSS"];
     NSString *str = [df stringFromDate:[NSDate date]];
-    NSString *new = [NSString stringWithFormat:@"iPad%@.png",str];
+    NSString *new = [NSString stringWithFormat:@"iPad%@.jpg",str];
     return new;
 }
 
