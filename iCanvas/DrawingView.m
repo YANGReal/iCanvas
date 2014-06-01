@@ -121,6 +121,10 @@
     NSNumber *numY1 = arrayY[0];
     NSNumber *numY2 = [arrayY lastObject];
     NSString *signWidth = [AppTool getObjectForKey:@"width"];
+    if (signWidth.length == 0)
+    {
+        signWidth = @"5";
+    }
     CGFloat sw= signWidth.floatValue;
   
     if (signWidth.length == 0)
@@ -132,6 +136,12 @@
     CGFloat height = numY2.floatValue - numY1.floatValue;
     CGFloat x = numX1.floatValue;
     CGFloat y = numY1.floatValue;
+    if ([[UIScreen mainScreen] scale]>1)
+    {
+       
+        return CGRectMake((x-sw)*2, (y-sw)*2, (width+sw+10)*2, (height+sw+10)*2);
+    }
+    //DLog(@"rect = %@",NSStringFromCGRect(CGRectMake(x-sw, y-sw, width+sw+10, height+sw+10)));
     return CGRectMake(x-sw, y-sw, width+sw+10, height+sw+10);
     return CGRectZero;
 }
@@ -166,6 +176,7 @@
 - (void)getImage
 {
     self.imgView.image = [self.camera image];
+
 }
 
 - (void)clear

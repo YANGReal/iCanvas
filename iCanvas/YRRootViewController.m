@@ -323,7 +323,7 @@
     UIImage *photo = drawingView.imgView.image;
     CGRect rect = [drawingView getSignRect];
     UIImage *sign = [drawingView.signView.signatureImage getSubImage:rect];
-    DLog(@"sign = %@",sign);
+   // DLog(@"sign = %@",sign);
   
     if (sign == nil)
     {
@@ -331,9 +331,9 @@
     }
     UIImage *picture = [self imageFromView:drawingView atFrame:drawingView.bounds];
     
-    NSData *photoData = UIImageJPEGRepresentation(photo, 0.3);
-    NSData *signData = UIImageJPEGRepresentation(sign,0.5);
-    NSData *pictureData = UIImageJPEGRepresentation(picture, 0.5);
+    NSData *photoData = UIImagePNGRepresentation(photo);
+    NSData *signData = UIImagePNGRepresentation(sign);//(sign,0.5);
+    NSData *pictureData = UIImagePNGRepresentation(picture);//(picture, 0.5);
     
     [photoData writeToFile:CACH_DOCUMENTS_PATH(photoPath) atomically:YES];
     [signData writeToFile:CACH_DOCUMENTS_PATH(signPath) atomically:YES];
@@ -483,7 +483,7 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd-hh-mm-ss.SSS"];
     NSString *str = [df stringFromDate:[NSDate date]];
-    NSString *new = [NSString stringWithFormat:@"iPad%@.jpg",str];
+    NSString *new = [NSString stringWithFormat:@"iPad%@.png",str];
     return new;
 }
 
