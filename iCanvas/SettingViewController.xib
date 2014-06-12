@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">13C64</string>
-		<string key="IBDocument.InterfaceBuilderVersion">5053</string>
-		<string key="IBDocument.AppKitVersion">1265.19</string>
-		<string key="IBDocument.HIToolboxVersion">697.40</string>
+		<string key="IBDocument.SystemVersion">13D65</string>
+		<string key="IBDocument.InterfaceBuilderVersion">5056</string>
+		<string key="IBDocument.AppKitVersion">1265.20</string>
+		<string key="IBDocument.HIToolboxVersion">698.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">3733</string>
@@ -376,7 +376,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{65, 539}, {68, 21}}</string>
 						<reference key="NSSuperview" ref="1016594950"/>
-						<reference key="NSNextKeyView" ref="34827835"/>
+						<reference key="NSNextKeyView" ref="77788726"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSHuggingPriority">{251, 251}</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -566,6 +566,63 @@
 						<reference key="IBUIFontDescription" ref="966331024"/>
 						<reference key="IBUIFont" ref="494621823"/>
 					</object>
+					<object class="IBUILabel" id="77788726">
+						<reference key="NSNextResponder" ref="1016594950"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{191, 539}, {73, 21}}</string>
+						<reference key="NSSuperview" ref="1016594950"/>
+						<reference key="NSNextKeyView" ref="718866283"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<string key="NSHuggingPriority">{251, 251}</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<string key="IBUIText">超时设置:</string>
+						<reference key="IBUITextColor" ref="981022353"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<reference key="IBUIFontDescription" ref="5874288"/>
+						<reference key="IBUIFont" ref="325639704"/>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+					</object>
+					<object class="IBUISlider" id="718866283">
+						<reference key="NSNextResponder" ref="1016594950"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{275, 535}, {194, 31}}</string>
+						<reference key="NSSuperview" ref="1016594950"/>
+						<reference key="NSNextKeyView" ref="866325164"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<float key="IBUIValue">15</float>
+						<float key="IBUIMinValue">10</float>
+						<float key="IBUIMaxValue">60</float>
+					</object>
+					<object class="IBUILabel" id="866325164">
+						<reference key="NSNextResponder" ref="1016594950"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{471, 539}, {37, 21}}</string>
+						<reference key="NSSuperview" ref="1016594950"/>
+						<reference key="NSNextKeyView" ref="34827835"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<string key="NSHuggingPriority">{251, 251}</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<string key="IBUIText">15秒</string>
+						<nil key="IBUITextColor"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<reference key="IBUIFontDescription" ref="5874288"/>
+						<reference key="IBUIFont" ref="325639704"/>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+					</object>
 				</array>
 				<string key="NSFrameSize">{513, 695}</string>
 				<reference key="NSNextKeyView" ref="626462892"/>
@@ -678,6 +735,22 @@
 					<string key="id">kUc-3H-cc9</string>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timeSlider</string>
+						<reference key="source" ref="696228528"/>
+						<reference key="destination" ref="718866283"/>
+					</object>
+					<string key="id">Z0m-mf-ytG</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timeOutLabel</string>
+						<reference key="source" ref="696228528"/>
+						<reference key="destination" ref="866325164"/>
+					</object>
+					<string key="id">QFx-xv-abt</string>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">save:</string>
 						<reference key="source" ref="945251867"/>
@@ -685,6 +758,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<string key="id">uiF-16-hFN</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">timeOut:</string>
+						<reference key="source" ref="718866283"/>
+						<reference key="destination" ref="696228528"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<string key="id">seQ-xi-3lN</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -833,6 +915,9 @@
 							<reference ref="158731786"/>
 							<reference ref="822302093"/>
 							<reference ref="1063369268"/>
+							<reference ref="77788726"/>
+							<reference ref="718866283"/>
+							<reference ref="866325164"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -955,6 +1040,21 @@
 						<reference key="object" ref="1063369268"/>
 						<reference key="parent" ref="1016594950"/>
 					</object>
+					<object class="IBObjectRecord">
+						<string key="id">ath-IR-cn2</string>
+						<reference key="object" ref="77788726"/>
+						<reference key="parent" ref="1016594950"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">9ay-6A-hUN</string>
+						<reference key="object" ref="718866283"/>
+						<reference key="parent" ref="1016594950"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">svG-v5-kIO</string>
+						<reference key="object" ref="866325164"/>
+						<reference key="parent" ref="1016594950"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -970,6 +1070,7 @@
 				<string key="2ko-Fz-3NX.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3jy-RH-Ahv.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="69k-7g-jgr.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="9ay-6A-hUN.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="AJ1-al-u0z.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="B4p-2M-GSj.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="DlE-iS-gyB.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -985,11 +1086,13 @@
 				<string key="R0a-hf-Hce.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="Rel-Xk-DC1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="SZT-VU-g2g.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="ath-IR-cn2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="dDX-xI-LmD.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="dTo-VZ-eqB.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="emK-Yh-0Rr.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="oWf-AZ-3Ps.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="s5c-fM-eKC.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="svG-v5-kIO.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="txs-Rv-tb0.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="txs-Rv-tb0.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="v5B-xT-1ob.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

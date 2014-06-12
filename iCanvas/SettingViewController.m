@@ -28,6 +28,9 @@
     NSArray *colorArray;
     NSArray *colorStrArr;
     
+    IBOutlet UISlider *timeSlider;
+    IBOutlet UILabel *timeOutLabel;
+    
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -44,6 +47,7 @@
 - (IBAction)button2Clicked:(id)sender;
 - (IBAction)button3Clicked:(id)sender;
 
+- (IBAction)timeOut:(id)sender;
 
 @end
 
@@ -153,7 +157,13 @@
         button3.selected = NO;
     }
 
-    
+    NSString *time = [AppTool getObjectForKey:@"timeOut"];
+    if (time.length == 0)
+    {
+        time = @"15";
+    }
+    timeSlider.value = time.intValue;
+    timeOutLabel.text = [NSString stringWithFormat:@"%@秒",time];
     
 }
 
@@ -354,6 +364,15 @@
     }
     return YES;
 }
+
+
+- (IBAction)timeOut:(id)sender
+{
+    NSString *time = [NSString stringWithFormat:@"%d",(int)timeSlider.value];
+    [AppTool storeObject:time forKey:@"timeOut"];
+    timeOutLabel.text = [NSString stringWithFormat:@"%@秒",time];
+}
+
 
 #pragma mark - 设置ftp
 

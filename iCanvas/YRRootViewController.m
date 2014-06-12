@@ -331,7 +331,7 @@
     }
     UIImage *picture = [self imageFromView:drawingView atFrame:drawingView.bounds];
     
-    NSData *photoData = UIImagePNGRepresentation(photo);
+    NSData *photoData = UIImageJPEGRepresentation(photo, 0.1);//(photo);
     NSData *signData = UIImagePNGRepresentation(sign);//(sign,0.5);
     NSData *pictureData = UIImagePNGRepresentation(picture);//(picture, 0.5);
     
@@ -377,32 +377,29 @@
 
 - (void)requestsManager:(id<GRRequestsManagerProtocol>)requestsManager didCompleteUploadRequest:(id<GRDataExchangeRequestProtocol>)request
 {
-   // static int i = 0;
-  //  i++;
-  //  if (i%3 == 0)
-   // {
         [self hideMBLoading];
         [self showMBCompletedWithMessage:@"上传成功"];
-        //[self hideMBLoading];
-     //   i = 0;
         [timer invalidate];
         time = 0;
-   // }
-    [drawingView clear];
+        [drawingView clear];
     
 }
 
 - (void)timeOut:(NSTimer *)t
 {
     time ++;
-    if (time>15)
+    NSString *timeOut = [AppTool getObjectForKey:@"timeOut"];
+    if (timeOut.length == 0)
+    {
+        timeOut = @"15";
+    }
+    if (time>timeOut.intValue)
     {
         time = 0;
         [timer invalidate];
         [self hideMBLoading];
         [self showMBFailedWithMessage:@"超时,请稍后再试"];
     }
-   // DLog(@"time = %d",time);
 }
 
 
@@ -410,6 +407,8 @@
 - (void)requestsManager:(id<GRRequestsManagerProtocol>)requestsManager didFailRequest:(id<GRRequestProtocol>)request withError:(NSError *)error
 {
     DLog(@"error code = %@",error.userInfo);
+    time = 0;
+    [timer invalidate];
     NSString *str = [error.userInfo objectForKey:@"message"];
     if (![str isEqualToString:@"Can't overwrite directory!"])
     {
