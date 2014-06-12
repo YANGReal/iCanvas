@@ -88,7 +88,7 @@
         _swipView.userInteractionEnabled = YES;
         shareButton.enabled = YES;
     }
-    titleLabel.text = [NSString stringWithFormat:@"当前共有%d张图片",dataArray.count];
+    titleLabel.text = [NSString stringWithFormat:@"当前共有%d张图片",(int)dataArray.count];
     
 }
 
@@ -124,7 +124,7 @@
 - (void)swipeViewCurrentItemIndexDidChange:(SwipeView *)swipeView
 {
     //update page control page
-    DLog(@"currentPage = %d",swipeView.currentPage);
+ 
     currentIndex = swipeView.currentItemIndex;
 }
 

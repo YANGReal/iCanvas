@@ -301,7 +301,7 @@
         case FlowViewOrientationHorizontal:{
             CGFloat offset = _scrollView.contentOffset.x;
             
-            for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
+            for (NSInteger i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_inUseCells objectAtIndex:i];
                 CGFloat origin = cell.frame.origin.x;
                 CGFloat delta = fabs(origin - offset);
@@ -324,7 +324,7 @@
         case FlowViewOrientationVertical:{
             CGFloat offset = _scrollView.contentOffset.y;
             
-            for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
+            for (NSInteger i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_inUseCells objectAtIndex:i];
                 CGFloat origin = cell.frame.origin.y;
                 CGFloat delta = fabs(origin - offset);

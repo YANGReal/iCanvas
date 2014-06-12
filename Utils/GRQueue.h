@@ -10,7 +10,7 @@
 
 @interface GRQueue : NSObject
 
-@property (nonatomic, readonly) int count;
+@property (nonatomic, readonly) NSInteger count;
 
 - (void)enqueue:(id)object;
 - (id)dequeue;

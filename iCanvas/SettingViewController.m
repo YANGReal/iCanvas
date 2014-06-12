@@ -326,7 +326,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     
-    NSString *str = [NSString stringWithFormat:@"%d",row];
+    NSString *str = [NSString stringWithFormat:@"%d",(int)row];
     [AppTool storeObject:str forKey:@"color"];
     penColor = colorStrArr[row];
     NSArray *arr = [penColor componentsSeparatedByString:@","];

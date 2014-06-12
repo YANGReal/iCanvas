@@ -487,7 +487,7 @@ NSString *const kDefaultReusableIdentifier = @"kTMQuiltViewDefaultReusableIdenti
             }
         }
         
-        for (int j = [indexPaths count] - 1; j >= 0; j--) {
+        for (int j = (int)[indexPaths count] - 1; j >= 0; j--) {
             if ([indexPathToView objectForKey:[indexPaths objectAtIndex:j]] != nil) {
                 *bottom = j;
                 break;

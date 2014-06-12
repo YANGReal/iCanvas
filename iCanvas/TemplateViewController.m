@@ -114,7 +114,7 @@
     cell.imageView.contentMode = UIViewContentModeScaleToFill;
     cell.imageView.clipsToBounds = YES;
     cell.imageView.image = [UIImage imageWithContentsOfFile:path];
-    cell.textLabel.text = [NSString stringWithFormat:@"模板%d",indexPath.row+1];
+    cell.textLabel.text = [NSString stringWithFormat:@"模板%d",(int)indexPath.row+1];
     return cell;
 }
 

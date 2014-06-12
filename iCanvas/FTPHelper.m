@@ -171,13 +171,13 @@ static void MyDirectoryListingCallBack(CFReadStreamRef readStream, CFStreamEvent
                 if (bytesRemaining > 0) {
                     memmove(info->buffer, nextByte, bytesRemaining);                    
                 }
-                info->leftOverByteCount = bytesRemaining;
+                info->leftOverByteCount = (UInt32)bytesRemaining;
             } else {
             }
             break;
         case kCFStreamEventErrorOccurred:
             error = CFReadStreamGetError(info->readStream);
-            fprintf(stderr, "CFReadStreamGetError returned (%ld, %ld)\n", error.domain, error.error);
+            fprintf(stderr, "CFReadStreamGetError returned (%ld, %d)\n", error.domain, (int)error.error);
 			DELEGATE_CALLBACK(listingFailed, nil);
             goto exit;
         case kCFStreamEventEndEncountered:
@@ -424,7 +424,7 @@ static void MyUploadCallBack(CFWriteStreamRef writeStream, CFStreamEventType typ
 					
                     info->totalBytesWritten += bytesWritten;
                     if (bytesWritten < bytesAvailable) {
-                        info->leftOverByteCount = bytesAvailable - bytesWritten;
+                        info->leftOverByteCount = (UInt32)(bytesAvailable - bytesWritten);
                         memmove(info->buffer, info->buffer + bytesWritten, info->leftOverByteCount);
                     } else {
                         info->leftOverByteCount = 0;
@@ -436,8 +436,8 @@ static void MyUploadCallBack(CFWriteStreamRef writeStream, CFStreamEventType typ
 			break;
         case kCFStreamEventErrorOccurred:
             error = CFWriteStreamGetError(info->writeStream);
-            fprintf(stderr, "CFReadStreamGetError returned (%ld, %ld)\n", error.domain, error.error);
-			NSString *reason = [NSString stringWithFormat:@"CFReadStreamGetError returned (%ld, %ld)\n", error.domain, error.error];
+            fprintf(stderr, "CFReadStreamGetError returned (%ld, %d)\n", error.domain, (int)error.error);
+			NSString *reason = [NSString stringWithFormat:@"CFReadStreamGetError returned (%ld, %d)\n", error.domain, (int)error.error];
 			DELEGATE_CALLBACK(dataUploadFailed:, reason);
             goto exit;
         case kCFStreamEventEndEncountered:
@@ -708,8 +708,8 @@ static void MyDownloadCallBack(CFReadStreamRef readStream, CFStreamEventType typ
             break;
         case kCFStreamEventErrorOccurred:
             error = CFReadStreamGetError(info->readStream);
-			NSString *reason = [NSString stringWithFormat:@"CFReadStreamGetError returned (%ld, %ld)\n", error.domain, error.error];
-            fprintf(stderr, "CFReadStreamGetError returned (%ld, %ld)\n", error.domain, error.error);
+			NSString *reason = [NSString stringWithFormat:@"CFReadStreamGetError returned (%ld, %d)\n", error.domain, (int)error.error];
+            fprintf(stderr, "CFReadStreamGetError returned (%ld, %d)\n", error.domain, (int)error.error);
 			DELEGATE_CALLBACK(dataDownloadFailed:, reason);
             goto exit;
         case kCFStreamEventEndEncountered:
