@@ -305,10 +305,11 @@
 - (void)uploadToFTP
 {
     
-    NSString *path = [self timeStampAsString];
-    photoPath = [NSString stringWithFormat:@"photo%@",path];
-    signPath = [NSString stringWithFormat:@"sign%@",path];
-    picturePath = [NSString stringWithFormat:@"picture%@",path];
+    NSString *path1 = [self timeStampAsStringWithSuffix:@"png"];
+    NSString *path2 = [self timeStampAsStringWithSuffix:@"jpg"];
+    photoPath = [NSString stringWithFormat:@"photo%@",path2];
+    signPath = [NSString stringWithFormat:@"sign%@",path1];
+    picturePath = [NSString stringWithFormat:@"picture%@",path1];
     [self _setupManager];
     
     NSString *server = [AppTool getObjectForKey:SERVER];
@@ -331,7 +332,7 @@
     }
     UIImage *picture = [self imageFromView:drawingView atFrame:drawingView.bounds];
     
-    NSData *photoData = UIImageJPEGRepresentation(photo, 0.1);//(photo);
+    NSData *photoData = UIImageJPEGRepresentation(photo, 0.1/2);//(photo);
     NSData *signData = UIImagePNGRepresentation(sign);//(sign,0.5);
     NSData *pictureData = UIImagePNGRepresentation(picture);//(picture, 0.5);
     
@@ -461,7 +462,7 @@
         MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc] init];
         mailVC.mailComposeDelegate = self;
         [mailVC setSubject:@"分享图片"];
-        [mailVC addAttachmentData:data mimeType:@"image/png" fileName:[self timeStampAsString]];
+        [mailVC addAttachmentData:data mimeType:@"image/png" fileName:[self timeStampAsStringWithSuffix:@"png"]];
         [self presentViewController:mailVC animated:YES completion:nil];
 
     }
@@ -475,14 +476,14 @@
     [controller dismissViewControllerAnimated:YES completion:Nil];
 }
 
-- (NSString *)timeStampAsString
+- (NSString *)timeStampAsStringWithSuffix:(NSString *)suffix
 {
  
     ///DLog(@"data = %@",[NSDate date]);
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd-hh-mm-ss.SSS"];
     NSString *str = [df stringFromDate:[NSDate date]];
-    NSString *new = [NSString stringWithFormat:@"iPad%@.png",str];
+    NSString *new = [NSString stringWithFormat:@"iPad%@.%@",str,suffix];
     return new;
 }
 
@@ -509,6 +510,7 @@
 
 - (void)passImage:(UIImage *)img
 {
+    
     if (img)
     {
         drawingView.templateView.image = img;

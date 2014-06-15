@@ -19,8 +19,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(YRFileManager)
     {
         return nil;
     }
-    //DLog(@"tmplist = %@",tmplist);
-    
     for (NSString *fileName in tmplist)
     {
         if ([fileName hasSuffix:@".png"]||[fileName hasSuffix:@".jpg"])

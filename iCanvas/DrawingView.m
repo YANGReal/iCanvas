@@ -48,6 +48,7 @@
         }
         else
         {
+            DLog(@"path = %@",template);
             self.templateView.image = [UIImage imageWithContentsOfFile:template];
         }
         
