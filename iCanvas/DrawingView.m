@@ -220,6 +220,7 @@
     self.templateView.frame = self.bounds;
     self.signView.frame = self.bounds;
     self.imgView2.frame = self.bounds;
+    self.imgView.frame = self.bounds;
 }
 
 
