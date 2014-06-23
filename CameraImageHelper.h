@@ -27,13 +27,14 @@
 @property (assign) UIImageOrientation g_orientation;
 @property (assign) AVCaptureVideoPreviewLayer *preview;
 @property (assign) id<AVHelperDelegate>delegate;
+@property (assign , nonatomic) CGRect frame;
 
 - (void) startRunning;
 - (void) stopRunning;
 
 -(void)setDelegate:(id<AVHelperDelegate>)_delegate;
 -(void)CaptureStillImage;
-- (void)embedPreviewInView: (UIView *) aView;
+-(void) embedPreviewInView: (UIView *) aView;
 - (void)changePreviewOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end
 

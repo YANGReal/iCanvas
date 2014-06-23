@@ -156,7 +156,7 @@
     {
         self.camera = [[CameraImageHelper alloc] init];
         [self.camera startRunning];
-        [self.camera embedPreviewInView:self.renderView];
+        //[self.camera embedPreviewInView:self.renderView];
         [self.camera changePreviewOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     }
 }

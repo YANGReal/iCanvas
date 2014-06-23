@@ -12,7 +12,8 @@
 #import "PhotoViewController.h"
 #import "DrawingView.h"
 #import "TemplateViewController.h"
-@interface YRRootViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,SettingViewControllerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,FTPHelperDelegate,TemplateViewControllerDelegate,GRRequestsManagerDelegate,UIAlertViewDelegate>
+#import "CaptureViewController.h"
+@interface YRRootViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,SettingViewControllerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,FTPHelperDelegate,TemplateViewControllerDelegate,GRRequestsManagerDelegate,UIAlertViewDelegate,CaptureViewControllerDelegate>
 {
     NSMutableArray *_dataArray;
     SBPageFlowView  *_flowView;
@@ -68,7 +69,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = WHITE_COLOR;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTempleteImage:) name:@"templeteImage" object:nil];
     
     drawingView = [[DrawingView alloc] initWithFrame:CGRectMake(0, 44, 1024, 748-44)];
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait)
@@ -91,7 +92,8 @@
 {
     SettingViewController *settingVC = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
     settingVC.delegate = self;
-    [settingVC showInViewController:self];
+   // [settingVC showInViewController:self];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (IBAction)share:(id)sender
@@ -101,6 +103,10 @@
 
 - (IBAction)openCamera:(id)sender
 {
+    CaptureViewController *vc = [[CaptureViewController alloc] initWithNibName:@"CaptureViewController" bundle:nil];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
     NSString *status = [AppTool getObjectForKey:@"noPrompt"];
     if (![status isEqualToString:@"YES"])
     {
@@ -517,6 +523,17 @@
     }
 }
 
+- (void)getTempleteImage:(NSNotification *)noti
+{
+    UIImage *img = noti.object;
+    drawingView.templateView.image = img;
+}
+
+
+- (void)backFromCaptureViewControllerWithImage:(UIImage *)image
+{
+    drawingView.imgView.image = image;
+}
 
 - (void)didReceiveMemoryWarning
 {

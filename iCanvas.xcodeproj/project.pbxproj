@@ -78,6 +78,9 @@
 		6EA050F11831F88700DDA9AF /* GRListingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA050E41831F88700DDA9AF /* GRListingRequest.m */; };
 		6EA050F21831F88700DDA9AF /* GRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA050E61831F88700DDA9AF /* GRRequest.m */; };
 		6EA050F31831F88700DDA9AF /* GRUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA050E91831F88700DDA9AF /* GRUploadRequest.m */; };
+		6EC0681E195850E80098C10A /* 001.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0681B195850E80098C10A /* 001.png */; };
+		6EC0681F195850E80098C10A /* 002.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0681C195850E80098C10A /* 002.png */; };
+		6EC06820195850E80098C10A /* 003.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC0681D195850E80098C10A /* 003.png */; };
 		6EC940E8183CF45F005303F9 /* ACEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC940E7183CF45F005303F9 /* ACEDrawingView.m */; };
 		6EE645CF182F508100444664 /* FTPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE645CE182F508100444664 /* FTPHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6EE645D3182FA4A900444664 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE645D1182FA4A900444664 /* SettingViewController.m */; };
@@ -87,6 +90,8 @@
 		6EE64634182FB98C00444664 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE64632182FB98C00444664 /* PhotoViewController.xib */; };
 		6EE64638182FC56900444664 /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE64637182FC56900444664 /* DrawingView.m */; };
 		6EE6463A182FFA6600444664 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE64639182FFA6600444664 /* MessageUI.framework */; };
+		6EE7A470195858CC0005D8BC /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7A46E195858CC0005D8BC /* CaptureViewController.m */; };
+		6EE7A474195859680005D8BC /* CaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE7A473195859680005D8BC /* CaptureViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +206,9 @@
 		6EA050E71831F88700DDA9AF /* GRRequestProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequestProtocol.h; sourceTree = "<group>"; };
 		6EA050E81831F88700DDA9AF /* GRUploadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRUploadRequest.h; sourceTree = "<group>"; };
 		6EA050E91831F88700DDA9AF /* GRUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadRequest.m; sourceTree = "<group>"; };
+		6EC0681B195850E80098C10A /* 001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 001.png; sourceTree = "<group>"; };
+		6EC0681C195850E80098C10A /* 002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 002.png; sourceTree = "<group>"; };
+		6EC0681D195850E80098C10A /* 003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 003.png; sourceTree = "<group>"; };
 		6EC940E6183CF45F005303F9 /* ACEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEDrawingView.h; sourceTree = "<group>"; };
 		6EC940E7183CF45F005303F9 /* ACEDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEDrawingView.m; sourceTree = "<group>"; };
 		6EE645CD182F508100444664 /* FTPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTPHelper.h; path = iCanvas/FTPHelper.h; sourceTree = "<group>"; };
@@ -216,6 +224,9 @@
 		6EE64636182FC56900444664 /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		6EE64637182FC56900444664 /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 		6EE64639182FFA6600444664 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		6EE7A46D195858CC0005D8BC /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
+		6EE7A46E195858CC0005D8BC /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
+		6EE7A473195859680005D8BC /* CaptureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaptureViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +328,8 @@
 				14AC654C17B2921000C16B30 /* AppDelegate.h */,
 				14AC654D17B2921000C16B30 /* AppDelegate.m */,
 				6E5D50DD18322B8A0060D5D1 /* YRNaviController.h */,
+				6E5D50DE18322B8A0060D5D1 /* YRNaviController.m */,
+				6EE7A472195858E00005D8BC /* CaptureViewController */,
 				14EB712417BF46C20030ADBD /* YRRootViewController */,
 				6EE645D5182FA4B600444664 /* SettingViewController */,
 				6EE64635182FB99100444664 /* PhotoViewController */,
@@ -366,6 +379,9 @@
 		14EB70FC17BF36A30030ADBD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6EC0681B195850E80098C10A /* 001.png */,
+				6EC0681C195850E80098C10A /* 002.png */,
+				6EC0681D195850E80098C10A /* 003.png */,
 				6E59C672183E4CF900512EB2 /* select_a.png */,
 				6E59C673183E4CF900512EB2 /* select_b.png */,
 				6E5D50E2183257D30060D5D1 /* photo.png */,
@@ -458,7 +474,6 @@
 		14EB712417BF46C20030ADBD /* YRRootViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6E5D50DE18322B8A0060D5D1 /* YRNaviController.m */,
 				14A0B6A418D93C6A00FD71EA /* PPSSignatureView.h */,
 				14A0B6A518D93C6A00FD71EA /* PPSSignatureView.m */,
 				14EB711F17BF46BB0030ADBD /* YRRootViewController.h */,
@@ -586,6 +601,16 @@
 			name = PhotoViewController;
 			sourceTree = "<group>";
 		};
+		6EE7A472195858E00005D8BC /* CaptureViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6EE7A46D195858CC0005D8BC /* CaptureViewController.h */,
+				6EE7A46E195858CC0005D8BC /* CaptureViewController.m */,
+				6EE7A473195859680005D8BC /* CaptureViewController.xib */,
+			);
+			name = CaptureViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -638,12 +663,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				14AC654817B2921000C16B30 /* InfoPlist.strings in Resources */,
+				6EC0681E195850E80098C10A /* 001.png in Resources */,
 				14AC655017B2921000C16B30 /* Default.png in Resources */,
 				14AC655217B2921000C16B30 /* Default@2x.png in Resources */,
 				6E25D4741830B3D2008A5B9C /* template1.png in Resources */,
 				6E25D4781830BC66008A5B9C /* camera.png in Resources */,
 				6E9D89EB1831276A004EE869 /* save.png in Resources */,
 				6E59C674183E4CF900512EB2 /* select_a.png in Resources */,
+				6EC06820195850E80098C10A /* 003.png in Resources */,
 				14AC655417B2921000C16B30 /* Default-568h@2x.png in Resources */,
 				14AC656B17B2980B00C16B30 /* bg.jpg in Resources */,
 				6E25D47E1830BF5C008A5B9C /* add.png in Resources */,
@@ -654,6 +681,8 @@
 				6EE645D4182FA4A900444664 /* SettingViewController.xib in Resources */,
 				14EB710917BF3AE10030ADBD /* failed.png in Resources */,
 				6EE64634182FB98C00444664 /* PhotoViewController.xib in Resources */,
+				6EC0681F195850E80098C10A /* 002.png in Resources */,
+				6EE7A474195859680005D8BC /* CaptureViewController.xib in Resources */,
 				14EB712317BF46BC0030ADBD /* YRRootViewController.xib in Resources */,
 				6E25D4761830BAEE008A5B9C /* setting.png in Resources */,
 				14EB712E17BF50660030ADBD /* sky.png in Resources */,
@@ -688,6 +717,7 @@
 				14EB710117BF39A90030ADBD /* UIColor+HexString.m in Sources */,
 				6EE645CF182F508100444664 /* FTPHelper.m in Sources */,
 				14EB710A17BF3AE10030ADBD /* MBProgressHUD.m in Sources */,
+				6EE7A470195858CC0005D8BC /* CaptureViewController.m in Sources */,
 				14EB710F17BF3FED0030ADBD /* Reachability.m in Sources */,
 				14EB711317BF404A0030ADBD /* GLNetworkUtility.m in Sources */,
 				14EB711D17BF41CB0030ADBD /* YRNavigator.m in Sources */,
@@ -792,16 +822,16 @@
 		14AC655E17B2921000C16B30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin Zeng (U344YU3QDC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin Zeng (U344YU3QDC)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iCanvas/iCanvas-Prefix.pch";
 				INFOPLIST_FILE = "iCanvas/iCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -810,7 +840,7 @@
 		14AC655F17B2921000C16B30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin Zeng (U344YU3QDC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iCanvas/iCanvas-Prefix.pch";
@@ -818,7 +848,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

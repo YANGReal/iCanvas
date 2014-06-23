@@ -17,7 +17,7 @@
 
 @interface SettingViewController : YRBaseViewController
 @property (assign, nonatomic) id<SettingViewControllerDelegate>delegate;
-- (void)showInViewController:(UIViewController *)vc;
+
 
 
 @end

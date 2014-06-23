@@ -8,7 +8,8 @@
 
 #import "SettingViewController.h"
 #import "GRListingRequest.h"
-@interface SettingViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,GRRequestsManagerDelegate>
+#import "TemplateViewController.h"
+@interface SettingViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,GRRequestsManagerDelegate,TemplateViewControllerDelegate>
 {
    IBOutlet UITextField *serverTextField;
    IBOutlet UITextField *portTextField;
@@ -31,6 +32,10 @@
     IBOutlet UISlider *timeSlider;
     IBOutlet UILabel *timeOutLabel;
     
+    
+    IBOutlet UIButton *frontBtn;
+    IBOutlet UIButton *backBtn;
+    
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -48,6 +53,11 @@
 - (IBAction)button3Clicked:(id)sender;
 
 - (IBAction)timeOut:(id)sender;
+
+
+- (IBAction)frontBtnClicked:(id)sender;
+- (IBAction)backBtnClicked:(id)sender;
+
 
 @end
 
@@ -165,35 +175,35 @@
     timeSlider.value = time.intValue;
     timeOutLabel.text = [NSString stringWithFormat:@"%@秒",time];
     
+    NSString *front = [AppTool getObjectForKey:@"front"];
+    if ([front isEqualToString:@"YES"])
+    {
+        frontBtn.selected = YES;
+    }
+    else
+    {
+        backBtn.selected = YES;
+    }
+    
+    
 }
 
 - (IBAction)chooseTemplate:(id)sender
 {
-    [self.parentViewController performSelector:@selector(showTemplate)];
-}
-
-
-- (void)showInViewController:(UIViewController *)vc
-{
-    UIView *maskView = [[UIView alloc] initWithFrame:vc.view.bounds];
-    maskView.backgroundColor = [UIColor grayColor];
-    maskView.alpha = 0.0;
-    maskView.tag = -100;
-    [vc.view addSubview:maskView];
-    self.view.center = CGPointMake(512, 1300);
-    if (vc.interfaceOrientation == UIInterfaceOrientationPortrait)
-    {
-        self.view.center = CGPointMake(768/2, 2000);
-    }
-    [vc.view addSubview:self.view];
-    [vc addChildViewController:self];
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        maskView.alpha = 0.7;
-        self.view.center = maskView.center;
-    }];
+   // [self.parentViewController performSelector:@selector(showTemplate)];
+    TemplateViewController *vc = [[TemplateViewController alloc] initWithNibName:@"TemplateViewController" bundle:nil];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+
+- (void)passImage:(UIImage *)img
+{
+    
+}
+
+
 
 - (void)dismiss
 {
@@ -237,7 +247,7 @@
         [self setupFTPServer];
         //[self dismiss];
         [self showMBLoadingWithMessage:@"稍等..."];
-        [self performSelector:@selector(dismiss) withObject:nil afterDelay:4];
+        [self performSelector:@selector(back:) withObject:nil afterDelay:4];
 
     }
     
@@ -245,6 +255,8 @@
 }
 - (IBAction)back:(id)sender
 {
+    [self.navigationController popViewControllerAnimated:YES];
+    return;
     [self dismiss];
 }
 
@@ -303,6 +315,19 @@
 
 }
 
+
+- (IBAction)frontBtnClicked:(id)sender
+{
+    frontBtn.selected = YES;
+    backBtn.selected = NO;
+    [AppTool storeObject:@"YES" forKey:@"front"];
+}
+- (IBAction)backBtnClicked:(id)sender
+{
+    backBtn.selected = YES;
+    frontBtn.selected = NO;
+    [AppTool storeObject:@"NO" forKey:@"front"];
+}
 
 
 #pragma mark UIPickerView Delegate method

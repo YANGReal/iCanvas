@@ -27,6 +27,11 @@
 
     //2.创建、配置输入设备
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    
+    
+    
+    
 #if 1
     int flags = NSKeyValueObservingOptionNew; //监听自动对焦
     [device addObserver:self forKeyPath:@"adjustingFocus" options:flags context:nil];
@@ -41,6 +46,7 @@
 	}
     [self.session addInput:captureInput];
     
+  //  [self.session addInput:backFacingCameraDeviceInput];
     
     //3.创建、配置输出       
     captureOutput = [[[AVCaptureStillImageOutput alloc] init] autorelease];
@@ -72,13 +78,16 @@
 }
 
 
--(void) embedPreviewInView: (UIView *) aView {
+-(void) embedPreviewInView: (UIView *) aView{
     if (!session) return;
     //设置取景
     preview = [AVCaptureVideoPreviewLayer layerWithSession: session];
-    preview.frame = aView.bounds;
+    preview.frame = _frame;
+   // DLog(@"frame1 = %@",NSStringFromCGRect(aView.bounds));
+    
+    
     preview.videoGravity = AVLayerVideoGravityResizeAspectFill; 
-    [aView.layer addSublayer: preview];
+    [aView.layer addSublayer:preview];
 }
 
 - (void)changePreviewOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -86,7 +95,7 @@
     if (!preview) {
         return;
     }
-    
+    self.preview.frame = _frame;
      [CATransaction begin];
     if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
         g_orientation = UIImageOrientationUp;
@@ -96,11 +105,13 @@
         g_orientation = UIImageOrientationDown;
         preview.connection.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
         
-    }else if (interfaceOrientation == UIDeviceOrientationPortrait){
+    }else if (interfaceOrientation == UIDeviceOrientationPortrait)
+    {
         g_orientation = UIImageOrientationRight;
         preview.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
         
-    }else if (interfaceOrientation == UIDeviceOrientationPortraitUpsideDown){
+    }else if (interfaceOrientation == UIDeviceOrientationPortraitUpsideDown)
+    {
         g_orientation = UIImageOrientationLeft;
         preview.connection.videoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
     }
@@ -159,7 +170,8 @@
 
 - (void) startRunning
 {
-	[[self session] startRunning];	
+	[[self session] startRunning];
+    [self swapFrontAndBackCameras];
 }
 
 - (void) stopRunning
@@ -170,6 +182,54 @@
 -(void)CaptureStillImage
 {
     [self  Captureimage];
+}
+
+
+- (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition)position
+{
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for ( AVCaptureDevice *device in devices )
+        if ( device.position == position )
+            return device;
+    return nil;
+}
+
+
+- (void)swapFrontAndBackCameras
+{
+    // Assume the session is already running
+    NSString *frontOrBack = [AppTool getObjectForKey:@"front"];
+    NSArray *inputs = self.session.inputs;
+    for ( AVCaptureDeviceInput *input in inputs ) {
+        AVCaptureDevice *device = input.device;
+        if ( [device hasMediaType:AVMediaTypeVideo] ) {
+          //  AVCaptureDevicePosition position = device.position;
+            AVCaptureDevice *newCamera = nil;
+            AVCaptureDeviceInput *newInput = nil;
+            
+            if (![frontOrBack isEqualToString:@"YES"])//position == AVCaptureDevicePositionFront
+            {
+                newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
+            }
+            
+            else
+            {
+                newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
+            }
+            
+            newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];
+            
+            // beginConfiguration ensures that pending changes are not applied immediately
+            [self.session beginConfiguration];
+            
+            [self.session removeInput:input];
+            [self.session addInput:newInput];
+            
+            // Changes take effect once the outermost commitConfiguration is invoked.
+            [self.session commitConfiguration];
+            break;
+        }
+    } 
 }
 
 

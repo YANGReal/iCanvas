@@ -13,8 +13,8 @@
 @property (strong , nonatomic) UIImageView *templateView;
 @property (strong , nonatomic) PPSSignatureView *signView;
 @property (strong , nonatomic) UIView *renderView;
-@property (strong , nonatomic) UIImageView *imgView;
 
+@property (strong , nonatomic) UIImageView *imgView;
 @property (strong, nonatomic) UIImageView *imgView2;
 
 - (void)closeCamera;

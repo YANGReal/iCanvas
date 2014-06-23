@@ -88,11 +88,10 @@
 {
     if ([self.delegate respondsToSelector:@selector(passImage:)])
     {
-        [self.delegate passImage:nil];
+       // [self.delegate passImage:nil];
     }
     [self.navigationController popViewControllerAnimated:YES];
 
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -135,7 +134,9 @@
     }
     NSString *file = dataArray[indexPath.row];
     [AppTool storeObject:file forKey:@"template"];
-    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"templeteImage" object:image];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 
