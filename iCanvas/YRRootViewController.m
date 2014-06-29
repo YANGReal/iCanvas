@@ -19,6 +19,9 @@
     SBPageFlowView  *_flowView;
     IBOutlet UIView *bar;
     IBOutlet UIButton *takeButton;
+    IBOutlet UIImageView *counterView;
+    
+    
     DrawingView *drawingView;
     
     NSString *photoPath;
@@ -84,6 +87,14 @@
     [self.view insertSubview:drawingView atIndex:0];
     
     takeButton.hidden = YES;
+    counterView.hidden = YES;
+    counterView.center = self.view.center;
+    NSArray *arr = @[[UIImage imageNamed:@"003.png"],
+                     [UIImage imageNamed:@"002.png"],
+                     [UIImage imageNamed:@"001.png"]];
+    counterView.animationDuration = 3.0;
+    counterView.animationImages = arr;
+
 }
 
 
@@ -103,10 +114,10 @@
 
 - (IBAction)openCamera:(id)sender
 {
-    CaptureViewController *vc = [[CaptureViewController alloc] initWithNibName:@"CaptureViewController" bundle:nil];
-    vc.delegate = self;
-    [self.navigationController pushViewController:vc animated:YES];
-    return;
+//    CaptureViewController *vc = [[CaptureViewController alloc] initWithNibName:@"CaptureViewController" bundle:nil];
+//    vc.delegate = self;
+//    [self.navigationController pushViewController:vc animated:YES];
+//    return;
     NSString *status = [AppTool getObjectForKey:@"noPrompt"];
     if (![status isEqualToString:@"YES"])
     {
@@ -143,38 +154,46 @@
 
 - (void)hideButtons
 {
-    for (UIView *views in bar.subviews)
-    {
-        if ([views isKindOfClass:[UIButton class]])
-        {
-            UIButton *btn = (UIButton *)views;
-            if (btn.tag != 100)
-            {
-                btn.hidden = YES;
-            }
-        }
-    }
+//    for (UIView *views in bar.subviews)
+//    {
+//        if ([views isKindOfClass:[UIButton class]])
+//        {
+//            UIButton *btn = (UIButton *)views;
+//            if (btn.tag != 100)
+//            {
+//                btn.hidden = YES;
+//            }
+//        }
+//    }
+    bar.hidden = YES;
     takeButton.hidden = NO;
+    takeButton.userInteractionEnabled = YES;
+    //counterView.hidden = YES;
+   
 }
 
 - (void)showButtons
 {
-    for (UIView *views in bar.subviews)
-    {
-        if ([views isKindOfClass:[UIButton class]])
-        {
-            UIButton *btn = (UIButton *)views;
-            if (btn.tag == 100)
-            {
-                btn.hidden = YES;
-            }
-            else
-            {
-                btn.hidden = NO;
-            }
-        }
-
-    }
+//    for (UIView *views in bar.subviews)
+//    {
+//        if ([views isKindOfClass:[UIButton class]])
+//        {
+//            UIButton *btn = (UIButton *)views;
+//            if (btn.tag == 100)
+//            {
+//                btn.hidden = YES;
+//            }
+//            else
+//            {
+//                btn.hidden = NO;
+//            }
+//        }
+//
+//    }
+    bar.hidden = NO;
+    takeButton.hidden = YES;
+    [counterView stopAnimating];
+    counterView.hidden = YES;
 }
 
 
@@ -202,9 +221,23 @@
 
 - (IBAction)takePicture:(id)sender
 {
+    counterView.hidden = NO;
+    [counterView startAnimating];
+    takeButton.userInteractionEnabled = NO;
+    [self performSelector:@selector(takePictures) withObject:nil afterDelay:3];
+    return;
     [drawingView takePicture];
     [self showButtons];
 }
+
+- (void)takePictures
+{
+    [drawingView takePicture];
+    
+    [self showButtons];
+}
+
+
 
 #pragma mark - 合成图片
 
@@ -501,12 +534,12 @@
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait)
     {
         drawingView.frame = CGRectMake(0, 44, 768, 1004-44);
-        takeButton.frame = CGRectMake(768-30-20, 7, 30, 30);
+       // takeButton.frame = CGRectMake(768-30-20, 7, 30, 30);
     }
     if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft||toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
     {
         drawingView.frame = CGRectMake(0, 44, 1024, 748-44);
-        takeButton.frame = CGRectMake(962, 7, 30, 30);
+       // takeButton.frame = CGRectMake(962, 7, 30, 30);
     }
     [drawingView changeOrientation:toInterfaceOrientation];
 }

@@ -18,6 +18,7 @@
     AVCaptureVideoPreviewLayer *preview;
     AVCaptureStillImageOutput *captureOutput;
     UIImageOrientation g_orientation;
+    BOOL isFront;
         
     id<AVHelperDelegate>delegate;
 }

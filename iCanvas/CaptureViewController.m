@@ -118,10 +118,10 @@
 - (void)getImage
 {
     self.imgView.image = self.camera.image;
+    DLog(@"orentation = %d",self.imgView.image.imageOrientation);
     didTake = YES;
     [self.camera stopRunning];
-    //self.camera = nil;
-    //self.imgView.image = self.camera.image;
+    self.camera = nil;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

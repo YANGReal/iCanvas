@@ -97,8 +97,13 @@
     }
     self.preview.frame = _frame;
      [CATransaction begin];
-    if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
         g_orientation = UIImageOrientationUp;
+        if (isFront)
+        {
+            g_orientation = UIImageOrientationDown;
+        }
         preview.connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
         
     }else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft){
@@ -149,7 +154,7 @@
          // Continue as appropriate.
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *t_image = [UIImage imageWithData:imageData];   
-         image = [[UIImage alloc]initWithCGImage:t_image.CGImage scale:1.0 orientation:g_orientation];
+         image = [[UIImage alloc] initWithCGImage:t_image.CGImage scale:1.0 orientation:g_orientation];
 
          [self giveImg2Delegate];
      }];
@@ -210,11 +215,13 @@
             if (![frontOrBack isEqualToString:@"YES"])//position == AVCaptureDevicePositionFront
             {
                 newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
+                isFront = NO;
             }
             
             else
             {
                 newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
+                isFront = YES;
             }
             
             newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];

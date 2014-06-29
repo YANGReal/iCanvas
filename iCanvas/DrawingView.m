@@ -28,6 +28,7 @@
         
         self.renderView = [[UIView alloc] initWithFrame:self.bounds];
         [self addSubview:self.renderView];
+        self.renderView.backgroundColor = CLEAR_COLOR;
         
         
         self.imgView = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -48,7 +49,7 @@
         }
         else
         {
-            DLog(@"path = %@",template);
+           // DLog(@"path = %@",template);
             self.templateView.image = [UIImage imageWithContentsOfFile:template];
         }
         
@@ -85,6 +86,7 @@
         [self addSubview:self.signView];
         
         self.imgView2 = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.imgView2.backgroundColor = CLEAR_COLOR;
         self.imgView2.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.imgView2];
         
@@ -155,8 +157,10 @@
     if (self.camera == nil)
     {
         self.camera = [[CameraImageHelper alloc] init];
-        [self.camera startRunning];
-        //[self.camera embedPreviewInView:self.renderView];
+        //[self.camera startRunning];
+        self.camera.frame = self.bounds;
+        [self.camera embedPreviewInView:self.renderView];
+         [self.camera startRunning];
         [self.camera changePreviewOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     }
 }
@@ -176,7 +180,9 @@
 
 - (void)getImage
 {
+    
     self.imgView.image = [self.camera image];
+     // DLog(@"orentation = %d",self.imgView.image.imageOrientation);
 
 }
 
@@ -217,6 +223,7 @@
 {
     [super setFrame:frame];
     
+    self.camera.frame = self.bounds;
     self.templateView.frame = self.bounds;
     self.signView.frame = self.bounds;
     self.imgView2.frame = self.bounds;
