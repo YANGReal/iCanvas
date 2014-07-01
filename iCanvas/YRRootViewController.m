@@ -438,6 +438,9 @@
         [timer invalidate];
         time = 0;
         [drawingView clear];
+        [drawingView openCamera];
+    [self hideButtons];
+    
     
 }
 
