@@ -118,7 +118,7 @@
 - (void)getImage
 {
     self.imgView.image = self.camera.image;
-    DLog(@"orentation = %d",self.imgView.image.imageOrientation);
+  //  DLog(@"orentation = %d",self.imgView.image.imageOrientation);
     didTake = YES;
     [self.camera stopRunning];
     self.camera = nil;

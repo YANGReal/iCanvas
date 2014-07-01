@@ -30,6 +30,9 @@
     
     NSInteger time;
     NSTimer *timer;
+    
+    
+    BOOL didTakePicture;
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -191,7 +194,8 @@
 //
 //    }
     bar.hidden = NO;
-    takeButton.hidden = YES;
+    takeButton.hidden = NO;
+    takeButton.userInteractionEnabled = YES;
     [counterView stopAnimating];
     counterView.hidden = YES;
 }
@@ -221,13 +225,24 @@
 
 - (IBAction)takePicture:(id)sender
 {
-    counterView.hidden = NO;
-    [counterView startAnimating];
-    takeButton.userInteractionEnabled = NO;
-    [self performSelector:@selector(takePictures) withObject:nil afterDelay:3];
-    return;
-    [drawingView takePicture];
-    [self showButtons];
+    if (didTakePicture == NO)
+    {
+        counterView.hidden = NO;
+        [counterView startAnimating];
+        takeButton.userInteractionEnabled = NO;
+        [self performSelector:@selector(takePictures) withObject:nil afterDelay:3];
+    }
+    else
+    {
+        [drawingView openCamera];
+        [self hideButtons];
+
+    }
+    didTakePicture = !didTakePicture;
+    
+//    return;
+//    [drawingView takePicture];
+//    [self showButtons];
 }
 
 - (void)takePictures
@@ -346,9 +361,10 @@
     
     NSString *path1 = [self timeStampAsStringWithSuffix:@"png"];
     NSString *path2 = [self timeStampAsStringWithSuffix:@"jpg"];
+    NSString *path3 = [self timeStampAsStringWithSuffix:@"jpg"];
     photoPath = [NSString stringWithFormat:@"photo%@",path2];
     signPath = [NSString stringWithFormat:@"sign%@",path1];
-    picturePath = [NSString stringWithFormat:@"picture%@",path1];
+    picturePath = [NSString stringWithFormat:@"picture%@",path3];
     [self _setupManager];
     
     NSString *server = [AppTool getObjectForKey:SERVER];
@@ -373,7 +389,7 @@
     
     NSData *photoData = UIImageJPEGRepresentation(photo, 0.1/2);//(photo);
     NSData *signData = UIImagePNGRepresentation(sign);//(sign,0.5);
-    NSData *pictureData = UIImagePNGRepresentation(picture);//(picture, 0.5);
+    NSData *pictureData = UIImageJPEGRepresentation(picture,0.5);//(picture, 0.5);
     
     [photoData writeToFile:CACH_DOCUMENTS_PATH(photoPath) atomically:YES];
     [signData writeToFile:CACH_DOCUMENTS_PATH(signPath) atomically:YES];

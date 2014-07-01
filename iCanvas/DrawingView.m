@@ -182,6 +182,8 @@
 {
     
     self.imgView.image = [self.camera image];
+    [self.camera stopRunning];
+    self.camera = nil;
      // DLog(@"orentation = %d",self.imgView.image.imageOrientation);
 
 }
