@@ -190,7 +190,7 @@
 
 - (void)clear
 {
-    self.imgView.image = [UIImage createImageWithColor:CLEAR_COLOR];
+    //self.imgView.image = [UIImage createImageWithColor:CLEAR_COLOR];
     [self.signView erase];
     self.imgView2.image = [UIImage createImageWithColor:CLEAR_COLOR];
     [self.pointArray removeAllObjects];
