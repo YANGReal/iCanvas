@@ -196,6 +196,12 @@
     [self.pointArray removeAllObjects];
 }
 
+- (void)clearImage
+{
+    self.imgView.image = [UIImage createImageWithColor:CLEAR_COLOR];
+    self.image = [UIImage createImageWithColor:CLEAR_COLOR];
+}
+
 
 - (void)changeOrientation:(UIInterfaceOrientation )orientation
 {

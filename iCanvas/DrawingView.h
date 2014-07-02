@@ -23,6 +23,10 @@
 - (CGRect)getSignRect;
 - (void)clear;
 
+- (void)clearImage;
+
+
+
 - (void)changeOrientation:(UIInterfaceOrientation )orientation;
 
 @end

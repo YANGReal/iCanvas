@@ -20,7 +20,7 @@
     IBOutlet UIView *bar;
     IBOutlet UIButton *takeButton;
     IBOutlet UIImageView *counterView;
-    
+    IBOutlet UIButton *uploadButton;
     
     DrawingView *drawingView;
     
@@ -85,7 +85,7 @@
     }
         
     
-    DLog(@"app heigth = %f",APP_WIDTH);
+   // DLog(@"app heigth = %f",APP_WIDTH);
    // bar.frame = CGRectMake(0, APP_WIDTH-44, APP_HEIGHT, 44);
     [self.view insertSubview:drawingView atIndex:0];
     
@@ -97,6 +97,9 @@
                      [UIImage imageNamed:@"001.png"]];
     counterView.animationDuration = 3.0;
     counterView.animationImages = arr;
+    
+    uploadButton.enabled = NO;
+    drawingView.userInteractionEnabled = NO;
 
 }
 
@@ -117,10 +120,7 @@
 
 - (IBAction)openCamera:(id)sender
 {
-//    CaptureViewController *vc = [[CaptureViewController alloc] initWithNibName:@"CaptureViewController" bundle:nil];
-//    vc.delegate = self;
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;
+
     NSString *status = [AppTool getObjectForKey:@"noPrompt"];
     if (![status isEqualToString:@"YES"])
     {
@@ -157,47 +157,24 @@
 
 - (void)hideButtons
 {
-//    for (UIView *views in bar.subviews)
-//    {
-//        if ([views isKindOfClass:[UIButton class]])
-//        {
-//            UIButton *btn = (UIButton *)views;
-//            if (btn.tag != 100)
-//            {
-//                btn.hidden = YES;
-//            }
-//        }
-//    }
     bar.hidden = YES;
     takeButton.hidden = NO;
     takeButton.userInteractionEnabled = YES;
     //counterView.hidden = YES;
+    uploadButton.enabled = NO;
+    drawingView.userInteractionEnabled = NO;
    
 }
 
 - (void)showButtons
 {
-//    for (UIView *views in bar.subviews)
-//    {
-//        if ([views isKindOfClass:[UIButton class]])
-//        {
-//            UIButton *btn = (UIButton *)views;
-//            if (btn.tag == 100)
-//            {
-//                btn.hidden = YES;
-//            }
-//            else
-//            {
-//                btn.hidden = NO;
-//            }
-//        }
-//
-//    }
     bar.hidden = NO;
     takeButton.hidden = NO;
     takeButton.userInteractionEnabled = YES;
     [counterView stopAnimating];
     counterView.hidden = YES;
+    uploadButton.enabled = YES;
+    drawingView.userInteractionEnabled = YES;
 }
 
 
@@ -235,15 +212,12 @@
     else
     {
         [drawingView openCamera];
+        [drawingView clearImage];
         [self hideButtons];
 
     }
     didTakePicture = !didTakePicture;
-    
-//    return;
-//    [drawingView takePicture];
-//    [self showButtons];
-}
+    }
 
 - (void)takePictures
 {
@@ -365,7 +339,7 @@
     photoPath = [NSString stringWithFormat:@"photo%@",path2];
     signPath = [NSString stringWithFormat:@"sign%@",path1];
     picturePath = [NSString stringWithFormat:@"picture%@",path3];
-    [self _setupManager];
+   [self _setupManager];
     
     NSString *server = [AppTool getObjectForKey:SERVER];
     if(server.length == 0)
@@ -377,6 +351,9 @@
     
     [self showMBLoadingWithMessage:@"上传中..."];
     UIImage *photo = drawingView.imgView.image;
+   // NSData *d = UIImageJPEGRepresentation(photo, 1);
+    //[d writeToFile:DOCUMENTS_PATH(@"123.jpg") atomically:YES];
+
     CGRect rect = [drawingView getSignRect];
     UIImage *sign = [drawingView.signView.signatureImage getSubImage:rect];
    // DLog(@"sign = %@",sign);

@@ -182,6 +182,7 @@
 - (void) stopRunning
 {
 	[[self session] stopRunning];
+    [preview removeFromSuperlayer];
 }
 
 -(void)CaptureStillImage
