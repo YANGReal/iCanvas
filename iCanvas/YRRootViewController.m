@@ -109,7 +109,6 @@
 {
     SettingViewController *settingVC = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
     settingVC.delegate = self;
-   // [settingVC showInViewController:self];
     [self.navigationController pushViewController:settingVC animated:YES];
 }
 
@@ -204,10 +203,19 @@
 {
     if (didTakePicture == NO)
     {
-        counterView.hidden = NO;
-        [counterView startAnimating];
+        
+        NSString *countDown = [AppTool getObjectForKey:@"countDown"];
         takeButton.userInteractionEnabled = NO;
-        [self performSelector:@selector(takePictures) withObject:nil afterDelay:3];
+        if (![countDown isEqualToString:@"NO"])
+        {
+            counterView.hidden = NO;
+            [counterView startAnimating];
+             [self performSelector:@selector(takePictures) withObject:nil afterDelay:3];
+        }
+        else
+        {
+            [self takePictures];
+        }
     }
     else
     {
@@ -217,7 +225,7 @@
 
     }
     didTakePicture = !didTakePicture;
-    }
+}
 
 - (void)takePictures
 {

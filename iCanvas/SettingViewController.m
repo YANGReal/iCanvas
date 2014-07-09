@@ -36,6 +36,9 @@
     IBOutlet UIButton *frontBtn;
     IBOutlet UIButton *backBtn;
     
+    
+    IBOutlet UISwitch *switcher;
+    
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -58,6 +61,7 @@
 - (IBAction)frontBtnClicked:(id)sender;
 - (IBAction)backBtnClicked:(id)sender;
 
+- (IBAction)openCountdown:(UISwitch *)sender;
 
 @end
 
@@ -106,6 +110,7 @@
     else
     {
         NSInteger index = colorIndex.integerValue;
+        DLog(@"index = %d",index);
         [_picker selectRow:index inComponent:0 animated:YES];
         penColor = colorStrArr[index];
         NSArray *arr = [penColor componentsSeparatedByString:@","];
@@ -185,6 +190,15 @@
         backBtn.selected = YES;
     }
     
+    NSString *countDown = [AppTool getObjectForKey:@"countDown"];
+    if (![countDown isEqualToString:@"NO"])
+    {
+        switcher.on = YES;
+    }
+    else
+    {
+        switcher.on = NO;
+    }
     
 }
 
@@ -195,6 +209,20 @@
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+
+- (IBAction)openCountdown:(UISwitch *)sender
+{
+    if (sender.on)
+    {
+        [AppTool storeObject:@"YES" forKey:@"countDown"];
+    }
+    else
+    {
+        [AppTool storeObject:@"NO" forKey:@"countDown"];
+    }
+   // DLog(@"on = %d",sender.on);
 }
 
 
@@ -255,6 +283,7 @@
 }
 - (IBAction)back:(id)sender
 {
+    [self.delegate setLineWidth:slider.value andColor:penColor];
     [self.navigationController popViewControllerAnimated:YES];
     return;
     [self dismiss];
@@ -359,6 +388,7 @@
     int green = [arr[1] intValue];
     int blue =  [arr[2] intValue];
     selectedColorView.backgroundColor = RGBColor(red, green, blue, 1);
+    [AppTool storeObject:penColor forKey:@"penColor"];
 }
 
 - (BOOL)checkInput

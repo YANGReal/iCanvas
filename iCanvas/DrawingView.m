@@ -68,27 +68,31 @@
             self.signView.fontWidth = widStr.floatValue;
         }
         
-        NSString *colorIndex = [AppTool getObjectForKey:@"color"];
-        if (colorIndex.length == 0)
+        NSString *color = [AppTool getObjectForKey:@"penColor"];
+        if (color.length == 0)
         {
             self.signView.color = GLKColor(0, 0, 0);
         }
         else
         {
-            NSInteger index = colorIndex.integerValue;
-            NSString *colorStr = colorArray[index];
-            NSArray *arr = [colorStr componentsSeparatedByString:@","];
+            //NSInteger index = colorIndex.integerValue;
+           // NSString *colorStr = colorArray[index];
+            NSArray *arr = [color componentsSeparatedByString:@","];
             int red = [arr[0] intValue];
             int green = [arr[1] intValue];
             int blue = [arr[2] intValue];
             self.signView.color = GLKColor(red, green, blue);
         }
+       // self.signView.backgroundColor = [UIColor redColor];
         [self addSubview:self.signView];
         
         self.imgView2 = [[UIImageView alloc] initWithFrame:self.bounds];
         self.imgView2.backgroundColor = CLEAR_COLOR;
         self.imgView2.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.imgView2];
+        
+
+        
         
     }
     return self;
