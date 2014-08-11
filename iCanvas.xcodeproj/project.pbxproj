@@ -822,16 +822,16 @@
 		14AC655E17B2921000C16B30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin Zeng (U344YU3QDC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin Zeng (U344YU3QDC)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iCanvas/iCanvas-Prefix.pch";
 				INFOPLIST_FILE = "iCanvas/iCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -840,16 +840,16 @@
 		14AC655F17B2921000C16B30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lin Zeng (WUGL4X3P3K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lin Zeng (U344YU3QDC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lin Zeng (U344YU3QDC)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iCanvas/iCanvas-Prefix.pch";
 				INFOPLIST_FILE = "iCanvas/iCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D6C24D91-DA1A-4BDD-9B82-1958B79DF023";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

@@ -263,6 +263,8 @@
     int green = [arr[1] intValue];
     int blue =  [arr[2] intValue];
     drawingView.signView.color = GLKColor(red, green, blue);
+    drawingView.signView2.lineWidth = witth;
+    drawingView.signView2.lineColor = RGBColor(red, green, blue, 1);
    
 }
 
@@ -359,12 +361,22 @@
     
     [self showMBLoadingWithMessage:@"上传中..."];
     UIImage *photo = drawingView.imgView.image;
-   // NSData *d = UIImageJPEGRepresentation(photo, 1);
-    //[d writeToFile:DOCUMENTS_PATH(@"123.jpg") atomically:YES];
+   
 
     CGRect rect = [drawingView getSignRect];
-    UIImage *sign = [drawingView.signView.signatureImage getSubImage:rect];
-   // DLog(@"sign = %@",sign);
+    UIImage *sign = nil;
+    NSString *pen = [AppTool getObjectForKey:@"pen"];
+    if (![pen isEqualToString:@"NO"])
+    {
+        sign = [drawingView.signView.signatureImage getSubImage:rect];
+    }
+    else
+    {
+        sign = [drawingView.signView2.image getSubImage:rect];
+    }
+    
+   
+    
   
     if (sign == nil)
     {
@@ -380,7 +392,7 @@
     [signData writeToFile:CACH_DOCUMENTS_PATH(signPath) atomically:YES];
     [pictureData writeToFile:CACH_DOCUMENTS_PATH(picturePath) atomically:YES];
     
-    
+    return;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:CACH_DOCUMENTS_PATH(photoPath) forKey:@"photo"];
     [dict setObject:CACH_DOCUMENTS_PATH(signPath) forKey:@"sign"];

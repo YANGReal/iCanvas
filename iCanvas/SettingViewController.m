@@ -39,6 +39,8 @@
     
     IBOutlet UISwitch *switcher;
     
+    IBOutlet UISwitch *penSwitch;
+    
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -62,6 +64,8 @@
 - (IBAction)backBtnClicked:(id)sender;
 
 - (IBAction)openCountdown:(UISwitch *)sender;
+
+- (IBAction)penSwitch:(UISwitch *)sender;
 
 @end
 
@@ -200,6 +204,16 @@
         switcher.on = NO;
     }
     
+    NSString *pen  = [AppTool getObjectForKey:@"pen"];
+    if (![pen isEqualToString:@"NO"])
+    {
+        penSwitch.on = YES;
+    }
+    else
+    {
+        penSwitch.on = NO;
+    }
+    
 }
 
 - (IBAction)chooseTemplate:(id)sender
@@ -225,6 +239,18 @@
    // DLog(@"on = %d",sender.on);
 }
 
+
+- (IBAction)penSwitch:(UISwitch *)sender
+{
+    if (sender.on)
+    {
+         [AppTool storeObject:@"YES" forKey:@"pen"];
+    }
+    else
+    {
+        [AppTool storeObject:@"NO" forKey:@"pen"];
+    }
+}
 
 - (void)passImage:(UIImage *)img
 {

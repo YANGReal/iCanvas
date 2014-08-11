@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
         <deployment version="1792" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -14,6 +14,7 @@
                 <outlet property="button3" destination="Qtg-vw-EO3" id="kUc-3H-cc9"/>
                 <outlet property="frontBtn" destination="ZfK-yA-XgA" id="kjK-VL-Gtq"/>
                 <outlet property="passwordTextField" destination="s5c-fM-eKC" id="HHI-xP-4Pr"/>
+                <outlet property="penSwitch" destination="Fup-j5-pHc" id="Fxj-Sj-XFf"/>
                 <outlet property="portTextField" destination="QkP-XH-tmf" id="7f9-0f-obW"/>
                 <outlet property="selectedColorView" destination="AJ1-al-u0z" id="EdM-3Q-abj"/>
                 <outlet property="serverTextField" destination="HYE-tq-jVe" id="WZb-HM-VF7"/>
@@ -303,6 +304,20 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="openCountdown:" destination="-1" eventType="valueChanged" id="a26-jp-SdR"/>
+                    </connections>
+                </switch>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="笔锋效果" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="knK-MV-8nH">
+                    <rect key="frame" x="556" y="539" width="68" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.24313725489999999" green="0.58823529409999997" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Fup-j5-pHc">
+                    <rect key="frame" x="658" y="534" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="penSwitch:" destination="-1" eventType="valueChanged" id="XfD-v8-isB"/>
                     </connections>
                 </switch>
             </subviews>
