@@ -9,7 +9,7 @@
 #import "SettingViewController.h"
 #import "GRListingRequest.h"
 #import "TemplateViewController.h"
-@interface SettingViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,GRRequestsManagerDelegate,TemplateViewControllerDelegate>
+@interface SettingViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,GRRequestsManagerDelegate,TemplateViewControllerDelegate,UIAlertViewDelegate>
 {
    IBOutlet UITextField *serverTextField;
    IBOutlet UITextField *portTextField;
@@ -236,6 +236,7 @@
     {
         [AppTool storeObject:@"NO" forKey:@"countDown"];
     }
+   
    // DLog(@"on = %d",sender.on);
 }
 
@@ -250,6 +251,11 @@
     {
         [AppTool storeObject:@"NO" forKey:@"pen"];
     }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:@"需要退出软件重新启动"
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消" otherButtonTitles:@"立即退出", nil];
+    [alert show];
 }
 
 - (void)passImage:(UIImage *)img
@@ -491,6 +497,15 @@
 - (void)requestsManager:(id<GRRequestsManagerProtocol>)requestsManager didCompleteCreateDirectoryRequest:(id<GRRequestProtocol>)request
 {
     DLog(@"创建目录成功");
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex!=0)
+    {
+        exit(0);
+    }
 }
 
 - (void)didReceiveMemoryWarning

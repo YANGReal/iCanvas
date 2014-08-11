@@ -375,9 +375,6 @@
         sign = [drawingView.signView2.image getSubImage:rect];
     }
     
-   
-    
-  
     if (sign == nil)
     {
         sign = [UIImage createImageWithColor:CLEAR_COLOR];
@@ -391,8 +388,7 @@
     [photoData writeToFile:CACH_DOCUMENTS_PATH(photoPath) atomically:YES];
     [signData writeToFile:CACH_DOCUMENTS_PATH(signPath) atomically:YES];
     [pictureData writeToFile:CACH_DOCUMENTS_PATH(picturePath) atomically:YES];
-    
-    return;
+  
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:CACH_DOCUMENTS_PATH(photoPath) forKey:@"photo"];
     [dict setObject:CACH_DOCUMENTS_PATH(signPath) forKey:@"sign"];
