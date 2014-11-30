@@ -30,8 +30,7 @@
 {
     // the path will always point to a directory, so we add the final slash to it (if there was one before escaping/standardizing, it's *gone* now)
     NSString *directoryPath = [super path];
-    if (![directoryPath hasSuffix: @"/"])
-    {
+    if (![directoryPath hasSuffix: @"/"]) {
         directoryPath = [directoryPath stringByAppendingString:@"/"];
     }
     return directoryPath;
@@ -40,7 +39,6 @@
 - (void)start
 {
     if ([self hostnameForRequest:self] == nil) {
-        NSLog(@"The host name is nil!");
         self.error = [[GRError alloc] init];
         self.error.errorCode = kGRFTPClientHostnameIsNil;
         [self.delegate requestFailed:self];
@@ -60,7 +58,6 @@
     NSString *directoryName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
 
     if ([self.listrequest fileExists:directoryName]) {
-        NSLog(@"Unfortunately, at this point, the library doesn't support directory overwriting.");
         [self.streamInfo streamError:self errorCode:kGRFTPClientCantOverwriteDirectory];
     }
     else {
@@ -105,34 +102,28 @@
     switch (streamEvent) {
         // XCode whines about this missing - which is why it is here
         case NSStreamEventNone:
+        case NSStreamEventHasBytesAvailable:
+        case NSStreamEventHasSpaceAvailable: {
             break;
+        }
             
         case NSStreamEventOpenCompleted: {
             self.didOpenStream = YES;
-        }
             break;
-            
-        case NSStreamEventHasBytesAvailable: {
         }
-            break;
-            
-        case NSStreamEventHasSpaceAvailable: {
-        }
-            break;
-            
+
         case NSStreamEventErrorOccurred: {
             // perform callbacks and close out streams
             [self.streamInfo streamError:self errorCode:[GRError errorCodeWithError:[theStream streamError]]];
-            NSLog(@"%@", self.error.message);
-        }
             break;
+        }
             
         case NSStreamEventEndEncountered: {
             // perform callbacks and close out streams
             [self.streamInfo streamComplete:self];
-        }
             break;
-
+        }
+            
         default:
             break;
     }

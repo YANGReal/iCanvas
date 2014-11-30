@@ -9,7 +9,7 @@
 #import "DrawingView.h"
 #import "CameraImageHelper.h"
 
-@interface DrawingView ()<PPSSignatureViewDelageter,ACEDrawingViewDelegate>
+@interface DrawingView ()<PPSSignatureViewDelagete,ACEDrawingViewDelegate>
 @property (strong , nonatomic) NSMutableArray *pointArray;
 @property (strong , nonatomic) CameraImageHelper *camera;
 @end
@@ -24,7 +24,7 @@
         self.pointArray = [NSMutableArray array];
         self.contentMode = UIViewContentModeScaleAspectFit;
        // self.image = [UIImage createImageWithColor:CLEAR_COLOR];
-        NSArray *colorArray = @[@"0,0,0",@"255,255,255",@"128,128,128",@"255,0,0",@"0,255,0",@"0,0,255",@"0,255,255",@"255,255,0",@"255,0,255",@"255,128,0",@"128,0,128",@"153,102,51"];
+       // NSArray *colorArray = @[@"0,0,0",@"255,255,255",@"128,128,128",@"255,0,0",@"0,255,0",@"0,0,255",@"0,255,255",@"255,255,0",@"255,0,255",@"255,128,0",@"128,0,128",@"153,102,51"];
         
         self.renderView = [[UIView alloc] initWithFrame:self.bounds];
         [self addSubview:self.renderView];
@@ -74,12 +74,11 @@
         {
             lineColor1 = [UIColor blackColor];
             lineColo2 =  GLKColor(0, 0, 0);
-           // self.signView.color = GLKColor(0, 0, 0);
+           
         }
         else
         {
-            //NSInteger index = colorIndex.integerValue;
-            // NSString *colorStr = colorArray[index];
+
             NSArray *arr = [color componentsSeparatedByString:@","];
             int red = [arr[0] intValue];
             int green = [arr[1] intValue];
@@ -96,7 +95,7 @@
             self.signView = [[PPSSignatureView alloc] initWithFrame:self.bounds];
             self.signView.delegater = self;
             self.signView.backgroundColor = CLEAR_COLOR;
-            self.signView.color = lineColo2;
+            self.signView.strokeColor = lineColor1;
             self.signView.fontWidth = penWidth;
             [self addSubview:self.signView];
         }

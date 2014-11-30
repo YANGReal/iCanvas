@@ -41,6 +41,10 @@
  @param password The password to use for connecting to the FTP service.
  @return A GRRequestsManager object.
  */
+
+@property (nonatomic, strong) NSData *currentUploadData;
+
 - (instancetype)initWithHostname:(NSString *)hostname user:(NSString *)username password:(NSString *)password;
+
 
 @end

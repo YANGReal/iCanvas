@@ -21,8 +21,12 @@
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
+@property (nonatomic, strong) NSMutableData *currentDownloadData;
+//@property (nonatomic, strong) NSData *currentUploadData;
 @property (nonatomic, strong) GRQueue *requestQueue;
 @property (nonatomic, strong) GRRequest *currentRequest;
+@property (nonatomic, assign) BOOL delegateRespondsToPercentProgress;
+@property (nonatomic, assign) BOOL isRunning;
 
 - (id<GRRequestProtocol>)_addRequestOfType:(Class)clazz withPath:(NSString *)filePath;
 - (id<GRDataExchangeRequestProtocol>)_addDataExchangeRequestOfType:(Class)clazz withLocalPath:(NSString *)localPath remotePath:(NSString *)remotePath;
@@ -32,14 +36,6 @@
 @end
 
 @implementation GRRequestsManager
-{
-    NSMutableData *_currentDownloadData;
-    NSData *_currentUploadData;
-    BOOL _isRunning;
-    
-@private
-    BOOL _delegateRespondsToPercentProgress;
-}
 
 @synthesize hostname = _hostname;
 @synthesize delegate = _delegate;
@@ -48,7 +44,7 @@
 
 - (instancetype)init
 {
-    NSAssert(NO, @"Initializer not allowed. Use designated initializer initWithHostname:username:password:");
+    [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
 
@@ -96,7 +92,7 @@
 - (void)stopAndCancelAllRequests
 {
     [self.requestQueue clear];
-    self.currentRequest.cancelDoesNotCallDelegate = TRUE;
+    self.currentRequest.cancelDoesNotCallDelegate = YES;
     [self.currentRequest cancelRequest];
     self.currentRequest = nil;
     _isRunning = NO;
@@ -105,6 +101,11 @@
 - (BOOL)cancelRequest:(GRRequest *)request
 {
     return [self.requestQueue removeObject:request];
+}
+
+- (NSUInteger)remainingRequests
+{
+    return [self.requestQueue count];
 }
 
 #pragma mark - FTP Actions
@@ -207,7 +208,7 @@
 - (void)requestFailed:(GRRequest *)request
 {
     if ([self.delegate respondsToSelector:@selector(requestsManager:didFailRequest:withError:)]) {
-        NSError *error = [NSError errorWithDomain:@"com.github.goldraccoon" code:-1000 userInfo:@{@"message": request.error.message}];
+        NSError *error = [NSError errorWithDomain:@"com.albertodebortoli.goldraccoon" code:-1000 userInfo:@{@"message": request.error.message}];
         [self.delegate requestsManager:self didFailRequest:request withError:error];
     }
     
@@ -253,12 +254,15 @@
 
 - (long)dataSizeForUploadRequest:(id<GRDataExchangeRequestProtocol>)request
 {
+   
     return [_currentUploadData length];
 }
 
 - (NSData *)dataForUploadRequest:(id<GRDataExchangeRequestProtocol>)request
 {
     NSData *temp = _currentUploadData;
+   // DLog(@"temp = %@",temp);
+    [NSThread sleepForTimeInterval:1];
     _currentUploadData = nil; // next time will return nil;
     return temp;
 }
@@ -293,25 +297,37 @@
 {
     self.currentRequest = [self.requestQueue dequeue];
     
-    if (self.currentRequest == nil) {
+    if (self.currentRequest == nil)
+    {
         [self stopAndCancelAllRequests];
+        
+        if ([self.delegate respondsToSelector:@selector(requestsManagerDidCompleteQueue:)]) {
+            [self.delegate requestsManagerDidCompleteQueue:self];
+        }
+        
         return;
     }
     
     if ([self.currentRequest isKindOfClass:[GRDownloadRequest class]]) {
         _currentDownloadData = [NSMutableData dataWithCapacity:4096];
     }
-    if ([self.currentRequest isKindOfClass:[GRUploadRequest class]]) {
+    if ([self.currentRequest isKindOfClass:[GRUploadRequest class]])
+    {
         NSString *localFilepath = ((GRUploadRequest *)self.currentRequest).localFilePath;
-        _currentUploadData = [NSData dataWithContentsOfFile:localFilepath];
+        if (_currentUploadData == nil)
+        {
+            _currentUploadData = [NSData dataWithContentsOfFile:localFilepath];
+        }
+      
+        DLog(@"_currentUploadData = %f",_currentUploadData.length/1024.0);
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.currentRequest start];
     });
     
-    if ([self.delegate respondsToSelector:@selector(requestsManager:didStartRequest:)]) {
-        [self.delegate requestsManager:self didStartRequest:self.currentRequest];
+    if ([self.delegate respondsToSelector:@selector(requestsManager:didScheduleRequest:)]) {
+        [self.delegate requestsManager:self didScheduleRequest:self.currentRequest];
     }
 }
 

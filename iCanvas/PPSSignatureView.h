@@ -2,9 +2,8 @@
 #import <GLKit/GLKit.h>
 
 
-
 @class PPSSignatureView;
-@protocol PPSSignatureViewDelageter <NSObject>
+@protocol PPSSignatureViewDelagete <NSObject>
 
 @optional
 - (void)signView:(PPSSignatureView *)view signBeganWiithPoint:(CGPoint )point;
@@ -14,13 +13,15 @@
 
 @end
 
+
+
 @interface PPSSignatureView : GLKView
 
+@property (assign , nonatomic) id<PPSSignatureViewDelagete>delegater;
+@property (assign, nonatomic) UIColor *strokeColor;
 @property (assign, nonatomic) BOOL hasSignature;
 @property (strong, nonatomic) UIImage *signatureImage;
-@property (assign , nonatomic,readwrite) GLKVector3 color;
 @property (assign , nonatomic) int fontWidth;
-@property (assign , nonatomic) id<PPSSignatureViewDelageter>delegater;
 - (void)erase;
 
 @end

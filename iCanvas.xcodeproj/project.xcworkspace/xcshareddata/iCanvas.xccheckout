@@ -10,29 +10,29 @@
 	<string>iCanvas</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>6F67C288-DF0D-4DD9-A595-1DACA4D891CB</key>
+		<key>20D0C3EA428B6B1AFCAB3388BF5766527E17168B</key>
 		<string>https://github.com/YANGReal/iCanvas.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iCanvas.xcodeproj/project.xcworkspace</string>
+	<string>iCanvas.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>6F67C288-DF0D-4DD9-A595-1DACA4D891CB</key>
+		<key>20D0C3EA428B6B1AFCAB3388BF5766527E17168B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/YANGReal/iCanvas.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6F67C288-DF0D-4DD9-A595-1DACA4D891CB</string>
+	<string>20D0C3EA428B6B1AFCAB3388BF5766527E17168B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6F67C288-DF0D-4DD9-A595-1DACA4D891CB</string>
+			<string>20D0C3EA428B6B1AFCAB3388BF5766527E17168B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iCanvas</string>
 		</dict>

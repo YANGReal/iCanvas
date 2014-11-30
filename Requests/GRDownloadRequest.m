@@ -17,31 +17,19 @@
 
 @interface GRDownloadRequest ()
 
-@property NSData *receivedData;
+@property (nonatomic, strong) NSData *receivedData;
 
 @end
 
 @implementation GRDownloadRequest
 
-@synthesize passiveMode;
-@synthesize uuid;
-@synthesize error;
-@synthesize streamInfo;
-@synthesize maximumSize;
-@synthesize percentCompleted;
-@synthesize delegate;
-@synthesize didOpenStream;
-@synthesize path;
-
-@synthesize receivedData;
-@synthesize localFilePath;
-@synthesize fullRemotePath;
+@synthesize localFilePath = _localFilePath;
+@synthesize fullRemotePath = _fullRemotePath;
 
 - (void)start
 {
     if ([self.delegate respondsToSelector:@selector(dataAvailable:forRequest:)] == NO) {
         [self.streamInfo streamError:self errorCode:kGRFTPClientMissingRequestDataAvailable];
-        NSLog(@"%@", self.error.message);
         return;
     }
     
@@ -75,7 +63,6 @@
                 }
             }
             else {
-                NSLog(@"Stream opened, but failed while trying to read from it.");
                 [self.streamInfo streamError:self errorCode:kGRFTPClientCantReadStream];
             }
         } 
@@ -88,7 +75,6 @@
             
         case NSStreamEventErrorOccurred: {
             [self.streamInfo streamError:self errorCode:[GRError errorCodeWithError:[theStream streamError]]];
-            NSLog(@"%@", self.error.message);
         }
         break;
             
