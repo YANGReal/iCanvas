@@ -132,11 +132,18 @@
     {
         [self.delegate passImage:image];
     }
+//    NSString *file = dataArray[indexPath.row];
+//    [AppTool storeObject:file forKey:@"template"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"templeteImage" object:image];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    
     NSString *file = dataArray[indexPath.row];
-    [AppTool storeObject:file forKey:@"template"];
+    NSURL *url = [NSURL fileURLWithPath:file];
+    DLog(@"url = %@",url.lastPathComponent);
+    [AppTool storeObject:url.lastPathComponent forKey:@"template"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"templeteImage" object:image];
     [self.navigationController popToRootViewControllerAnimated:YES];
-    
 }
 
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1792" defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController">
@@ -22,6 +22,7 @@
                 <outlet property="switcher" destination="ave-wl-c1D" id="zxJ-w4-P2k"/>
                 <outlet property="timeOutLabel" destination="svG-v5-kIO" id="QFx-xv-abt"/>
                 <outlet property="timeSlider" destination="9ay-6A-hUN" id="Z0m-mf-ytG"/>
+                <outlet property="uploadSwitch" destination="0Lx-Cv-lnc" id="2OT-Oj-MYM"/>
                 <outlet property="userNameTextField" destination="PC4-zH-E6r" id="H1C-M3-YMm"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -320,10 +321,24 @@
                         <action selector="penSwitch:" destination="-1" eventType="valueChanged" id="XfD-v8-isB"/>
                     </connections>
                 </switch>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传模式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bll-Nq-Nhe">
+                    <rect key="frame" x="556" y="656" width="68" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.24313725489999999" green="0.58823529409999997" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="0Lx-Cv-lnc">
+                    <rect key="frame" x="658" y="651" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="uploadSwitch:" destination="-1" eventType="valueChanged" id="KrZ-q9-8bl"/>
+                    </connections>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
@@ -332,4 +347,9 @@
         <image name="select_a.png" width="102" height="102"/>
         <image name="select_b.png" width="100" height="100"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

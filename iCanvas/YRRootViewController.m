@@ -33,6 +33,9 @@
     
     
     BOOL didTakePicture;
+    
+    NSData *photoData, *signData,*pictureData;
+    
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -355,6 +358,12 @@
     NSString *path1 = [self timeStampAsStringWithSuffix:@"png"];
     NSString *path2 = [self timeStampAsStringWithSuffix:@"jpg"];
     NSString *path3 = [self timeStampAsStringWithSuffix:@"jpg"];
+    
+    NSString *upload = [AppTool getObjectForKey:@"upload"];
+   
+    
+    
+    
     photoPath = [NSString stringWithFormat:@"photo%@",path2];
     signPath = [NSString stringWithFormat:@"sign%@",path1];
     picturePath = [NSString stringWithFormat:@"picture%@",path3];
@@ -368,7 +377,7 @@
 
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeOut:) userInfo:nil repeats:YES];
     
-    [self showMBLoadingWithMessage:@"上传中..."];
+  
     UIImage *photo = drawingView.imgView.image;
    
 
@@ -388,11 +397,28 @@
     {
         sign = [UIImage createImageWithColor:CLEAR_COLOR];
     }
+    
+    
+    
     UIImage *picture = [self imageFromView:drawingView atFrame:drawingView.bounds];
     
-    NSData *photoData = UIImageJPEGRepresentation(photo, 0.1/2);//(photo);
-    NSData *signData = UIImagePNGRepresentation(sign);//(sign,0.5);
-    NSData *pictureData = UIImageJPEGRepresentation(picture,0.5);//(picture, 0.5);
+     photoData = UIImageJPEGRepresentation(photo, 0.1/2);//(photo);
+     signData = UIImagePNGRepresentation(sign);//(sign,0.5);
+    pictureData = UIImageJPEGRepresentation(picture,0.5);//(picture, 0.5);
+    
+    if ([upload isEqualToString:@"NO"])
+    {
+        NSString *filePath1 = [NSString stringWithFormat:@"Sign/%@",photoPath];
+        NSString *filePath2 = [NSString stringWithFormat:@"Sign/%@",signPath];
+        NSString *filePath3 = [NSString stringWithFormat:@"Sign/%@",picturePath];
+        [photoData writeToFile:DOCUMENTS_PATH(filePath1) atomically:YES];
+        [signData writeToFile:DOCUMENTS_PATH(filePath2) atomically:YES];
+        [pictureData writeToFile:DOCUMENTS_PATH(filePath3) atomically:YES];
+        return;
+       
+    }
+
+    [self showMBLoadingWithMessage:@"上传中..."];
     
     [photoData writeToFile:CACH_DOCUMENTS_PATH(photoPath) atomically:YES];
     [signData writeToFile:CACH_DOCUMENTS_PATH(signPath) atomically:YES];
@@ -460,6 +486,15 @@
         [timer invalidate];
         [self hideMBLoading];
         [self showMBFailedWithMessage:@"超时,请稍后再试"];
+        
+        
+        NSString *filePath1 = [NSString stringWithFormat:@"Sign/%@",photoPath];
+        NSString *filePath2 = [NSString stringWithFormat:@"Sign/%@",signPath];
+        NSString *filePath3 = [NSString stringWithFormat:@"Sign/%@",picturePath];
+        [photoData writeToFile:DOCUMENTS_PATH(filePath1) atomically:YES];
+        [signData writeToFile:DOCUMENTS_PATH(filePath2) atomically:YES];
+        [pictureData writeToFile:DOCUMENTS_PATH(filePath3) atomically:YES];
+
     }
 }
 
@@ -470,6 +505,13 @@
     DLog(@"error code = %@",error.userInfo);
     time = 0;
     [timer invalidate];
+    NSString *filePath1 = [NSString stringWithFormat:@"Sign/%@",photoPath];
+    NSString *filePath2 = [NSString stringWithFormat:@"Sign/%@",signPath];
+    NSString *filePath3 = [NSString stringWithFormat:@"Sign/%@",picturePath];
+    [photoData writeToFile:DOCUMENTS_PATH(filePath1) atomically:YES];
+    [signData writeToFile:DOCUMENTS_PATH(filePath2) atomically:YES];
+    [pictureData writeToFile:DOCUMENTS_PATH(filePath3) atomically:YES];
+
     NSString *str = [error.userInfo objectForKey:@"message"];
     if (![str isEqualToString:@"Can't overwrite directory!"])
     {
@@ -492,6 +534,13 @@
 - (void)requestsManager:(id<GRRequestsManagerProtocol>)requestsManager didFailWritingFileAtPath:(NSString *)path forRequest:(id<GRDataExchangeRequestProtocol>)request error:(NSError *)error
 {
     DLog(@"123");
+    NSString *filePath1 = [NSString stringWithFormat:@"Sign/%@",photoPath];
+    NSString *filePath2 = [NSString stringWithFormat:@"Sign/%@",signPath];
+    NSString *filePath3 = [NSString stringWithFormat:@"Sign/%@",picturePath];
+    [photoData writeToFile:DOCUMENTS_PATH(filePath1) atomically:YES];
+    [signData writeToFile:DOCUMENTS_PATH(filePath2) atomically:YES];
+    [pictureData writeToFile:DOCUMENTS_PATH(filePath3) atomically:YES];
+
 }
 
 

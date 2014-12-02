@@ -22,6 +22,14 @@
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     [self copyTemplateToDocument];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (![fm fileExistsAtPath:DOCUMENTS_PATH(@"Sign")])
+    {
+        NSError *error = nil;
+        [fm createDirectoryAtPath:DOCUMENTS_PATH(@"Sign") withIntermediateDirectories:YES attributes:nil error:&error];
+        DLog(@"error = %@",error);
+    }
+
     return YES;
 }
 

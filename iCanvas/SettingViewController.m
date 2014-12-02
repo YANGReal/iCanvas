@@ -41,6 +41,8 @@
     
     IBOutlet UISwitch *penSwitch;
     
+     IBOutlet UISwitch *uploadSwitch;
+    
 }
 
 @property (strong , nonatomic) GRRequestsManager *requestsManager;
@@ -66,6 +68,7 @@
 - (IBAction)openCountdown:(UISwitch *)sender;
 
 - (IBAction)penSwitch:(UISwitch *)sender;
+- (IBAction)uploadSwitch:(UISwitch *)sender;
 
 @end
 
@@ -213,7 +216,16 @@
     {
         penSwitch.on = NO;
     }
-    
+    NSString *upload = [AppTool getObjectForKey:@"upload"];
+    if (![upload isEqualToString:@"NO"])
+    {
+        uploadSwitch.on = YES;
+    }
+    else
+    {
+        uploadSwitch.on = NO;
+    }
+
 }
 
 - (IBAction)chooseTemplate:(id)sender
@@ -261,6 +273,18 @@
 - (void)passImage:(UIImage *)img
 {
     
+}
+
+- (IBAction)uploadSwitch:(UISwitch *)sender
+{
+    if (sender.on)
+    {
+        [AppTool storeObject:@"YES" forKey:@"upload"];
+    }
+    else
+    {
+        [AppTool storeObject:@"NO" forKey:@"upload"];
+    }
 }
 
 

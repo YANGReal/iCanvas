@@ -42,6 +42,7 @@
         self.templateView.contentMode = UIViewContentModeScaleToFill;
         self.templateView.backgroundColor = CLEAR_COLOR;
         
+
         NSString *template = [AppTool getObjectForKey:@"template"];
         if (template.length == 0)
         {
@@ -49,7 +50,9 @@
         }
         else
         {
-            self.templateView.image = [UIImage imageWithContentsOfFile:template];
+            //DLog(@"template = %@",template);
+            //DLog(@"path = %@",DOCUMENTS_PATH(template));
+            self.templateView.image = [UIImage imageWithContentsOfFile:DOCUMENTS_PATH(template)];
         }
         
         [self addSubview:self.templateView];
