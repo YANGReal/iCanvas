@@ -103,7 +103,7 @@
     
     uploadButton.enabled = NO;
     drawingView.userInteractionEnabled = NO;
-
+   // DLog(@"sub = %@",drawingView.subviews);
 }
 
 
@@ -235,6 +235,7 @@
     [drawingView takePicture];
     
     [self showButtons];
+    
 }
 
 
@@ -260,15 +261,7 @@
 
 - (void)setLineWidth:(CGFloat)witth andColor:(NSString *)color
 {
-//    drawingView.signView.fontWidth = (int)witth;
-//    NSArray *arr = [color componentsSeparatedByString:@","];
-//    int red =   [arr[0] intValue];
-//    int green = [arr[1] intValue];
-//    int blue =  [arr[2] intValue];
-//    drawingView.signView.color = GLKColor(red, green, blue);
-//    drawingView.signView2.lineWidth = witth;
-//    drawingView.signView2.lineColor = RGBColor(red, green, blue, 1);
-    
+
     
     NSArray *arr = [color componentsSeparatedByString:@","];
     int red =   [arr[0] intValue];

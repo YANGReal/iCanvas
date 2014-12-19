@@ -284,7 +284,8 @@ static PPSSignaturePoint ViewPointToGL(CGPoint viewPoint, CGRect bounds, GLKVect
     [self erase];
 }
 
-- (void)pan:(UIPanGestureRecognizer *)p {
+- (void)pan:(UIPanGestureRecognizer *)p
+{
     
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     

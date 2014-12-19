@@ -95,7 +95,7 @@
         NSString *pen = [AppTool getObjectForKey:@"pen"];
         if (![pen isEqualToString:@"NO"])
         {
-            self.signView = [[PPSSignatureView alloc] initWithFrame:self.bounds];
+            self.signView = [[PPSSignatureView alloc] initWithFrame:self.bounds context:nil];
             self.signView.delegater = self;
             self.signView.backgroundColor = CLEAR_COLOR;
             self.signView.strokeColor = lineColor1;
@@ -113,15 +113,19 @@
         }
         
               // self.signView.backgroundColor = [UIColor redColor];
-       
-        
+    
         self.imgView2 = [[UIImageView alloc] initWithFrame:self.bounds];
         self.imgView2.backgroundColor = CLEAR_COLOR;
         self.imgView2.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.imgView2];
-        
-
-        
+//        if (_signView)
+//        {
+//            [self bringSubviewToFront:_signView];
+//        }
+//        else
+//        {
+//            [self bringSubviewToFront:_signView2];
+//        }
         
     }
     return self;
@@ -289,6 +293,7 @@
     self.imgView2.frame = self.bounds;
     self.imgView.frame = self.bounds;
 }
+
 
 
 
