@@ -32,10 +32,12 @@
     
     
     
-#if 1
+
     int flags = NSKeyValueObservingOptionNew; //监听自动对焦
-    [device addObserver:self forKeyPath:@"adjustingFocus" options:flags context:nil];
-#endif
+    [device addObserver:self forKeyPath:@"adjustingFocus"
+                options:flags
+                context:nil];
+
 
 	NSError *error;
 	AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
@@ -69,8 +71,8 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if( [keyPath isEqualToString:@"adjustingFocus"] ){
         BOOL adjustingFocus = [ [change objectForKey:NSKeyValueChangeNewKey] isEqualToNumber:[NSNumber numberWithInt:1] ];
-        NSLog(@"Is adjusting focus? %@", adjustingFocus ? @"YES" : @"NO" );
-        NSLog(@"Change dictionary: %@", change);
+        //NSLog(@"Is adjusting focus? %@", adjustingFocus ? @"YES" : @"NO" );
+       // NSLog(@"Change dictionary: %@", change);
         if (delegate) {
             [delegate foucusStatus:adjustingFocus];
         }
@@ -144,14 +146,18 @@
 
     //get UIImage
     [captureOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:
-     ^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
+     ^(CMSampleBufferRef imageSampleBuffer, NSError *error)
+     {
          CFDictionaryRef exifAttachments =
          CMGetAttachment(imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
          if (exifAttachments) {
              // Do something with the attachments.
          }
-         
          // Continue as appropriate.
+         if (imageSampleBuffer == NULL)
+         {
+             return ;
+         }
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *t_image = [UIImage imageWithData:imageData];   
          image = [[UIImage alloc] initWithCGImage:t_image.CGImage scale:1.0 orientation:g_orientation];

@@ -117,7 +117,7 @@
     else
     {
         NSInteger index = colorIndex.integerValue;
-        DLog(@"index = %ld",index);
+     //   DLog(@"index = %ld",index);
         [_picker selectRow:index inComponent:0 animated:YES];
         penColor = colorStrArr[index];
         NSArray *arr = [penColor componentsSeparatedByString:@","];

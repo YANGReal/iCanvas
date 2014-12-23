@@ -368,7 +368,6 @@
         return;
     }
 
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeOut:) userInfo:nil repeats:YES];
     
   
     UIImage *photo = drawingView.imgView.image;
@@ -407,9 +406,14 @@
         [photoData writeToFile:DOCUMENTS_PATH(filePath1) atomically:YES];
         [signData writeToFile:DOCUMENTS_PATH(filePath2) atomically:YES];
         [pictureData writeToFile:DOCUMENTS_PATH(filePath3) atomically:YES];
+        
+       // [self showMBCompletedWithMessage:@"保存成功"];
+        [self performSelector:@selector(showMBCompletedWithMessage:) withObject:@"保存成功" afterDelay:2];
         return;
        
     }
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeOut:) userInfo:nil repeats:YES];
+    
 
     [self showMBLoadingWithMessage:@"上传中..."];
     
